@@ -1,0 +1,147 @@
+.price-range-block {
+
+   margin:0px 10px;
+
+}
+
+
+
+.sliderText{
+
+/*    width:40%;
+
+    margin-bottom:30px;
+
+    border-bottom: 2px solid red;
+
+    padding: 10px 0 10px 0px;
+
+    font-weight:bold;*/
+
+}
+
+#min_price {
+    margin-left: -10px;
+}
+
+.ui-slider-horizontal {
+
+    height: .6em;
+
+}
+
+.ui-slider-horizontal {
+margin-bottom: 0;
+
+width: 101%;
+
+margin-top: 6px;
+
+}
+.price-range-field2 {
+	float:right; margin-right: -10px;
+}
+.Price_label {
+	font-size:14px; 
+	line-height: 21px;
+	margin-bottom: 0;
+}
+label.Price_label2 {
+    display: inline-block;
+    margin-bottom: 0;
+}
+.slider-range2 {
+    margin-top: 20px;
+}
+#slider-range {
+    background-color: #00a651 !important;
+}
+
+.ui-widget-content {
+	 background-color: #00a651 !important;
+	 background: rgb(0, 166, 81) none repeat scroll 0% 0%;
+}
+
+.ui-widget-header {
+background: rgb(0, 166, 81) none repeat scroll 0% 0%;
+    background: #3FE331;
+
+}
+
+
+
+.price-range-search {
+
+    width:40.5%; 
+
+    background-color: #f9f9f9; 
+
+    border: 1px solid #6e6666;
+
+    min-width: 40%;
+
+    display: inline-block;
+
+    height: 32px;
+
+    border-radius: 5px;
+
+    float: left;
+
+    margin-bottom:20px;
+
+    font-size:16px;
+
+}
+
+.price-range-field{
+
+width: 30%;
+
+min-width: 16%;
+
+background-color: #fff;
+
+border: 1px solid #eeeeee;
+
+border-radius: 20px;
+
+padding: 8px 5px;
+
+font-size: 16px;
+
+color: #3a3a3a;
+
+text-align: center;
+
+}
+
+.search-results-block{
+
+/*    position: relative;
+
+    display: block;
+
+    clear: both;*/
+
+}
+
+
+
+.price-range-block .ui-slider-handle.ui-corner-all.ui-state-default {
+
+    border: 1px solid #00a651;
+
+    background: #00a651;
+
+    font-weight: normal;
+
+    width: 16px;
+
+    height: 16px;
+
+    border-radius: 50%;
+
+
+
+}
