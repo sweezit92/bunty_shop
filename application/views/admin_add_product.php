@@ -35,25 +35,9 @@ $this->load->view("common/header");
 <section class="dashboard_sec m-t-50 m-b-30">
   <div class="container">
     <div class="row">
-      <div class="col-md-3">
-        <div class="dashboard_menu">
-          <div class="dashbord_img">
-            <div class="dashboard_back"> <img class="img-fluid w-100" src="images/dash-background.png" alt="Classified Plus"> </div>
-            <div class="rounded_img"> <img class="img-fluid" src="images/aditya.png" alt="Classified Plus"> </div>
-            <div class="aditya">aditya</div>
-          </div>
-          <ul class="list-unstyled  m-t-20">
-            <li><span><i class="fa fa-address-card"></i></span><a href="<?php echo base_url("admin_add_category");?>"> Add Category </a></li>
-            <li class="active"><span><i class="fa fa-list"></i></span><a href="<?php echo base_url("admin_view_category");?>"> View Categories </a></li>
-            <li><span><i class="fa fa-address-card"></i></span><a href="<?php echo base_url("admin_add_sub_category");?>"> Add Subcategory </a></li>
-            <li><span><i class="fa fa-list"></i></span><a href="<?php echo base_url("admin_view_sub_category");?>"> View Subcategories </a></li>
-			<li><span><i class="fa fa-address-card"></i></span><a href="<?php echo base_url("admin_add_product");?>"> Add Product </a></li>
-            <li><span><i class="fa fa-list"></i></span><a href="<?php echo base_url("admin_product_listing");?>"> Product Listing </a></li>
-            <!-- <li><span><i class="fa fa-star"></i></span><a href="<?php echo base_url("admin_query");?>"> Query </a></li> -->
-            <li><span><i class="fa fa-sign-in"></i></span><a href="<?php echo base_url("home");?>"> Logout </a></li>
-          </ul>
-        </div>
-      </div>
+      <?php
+	  include("common/admin_sidebar.php");
+	  ?>
       <div class="col-md-9">
         <div class="dashboard_profile_main">
           <div class="dashboard_heding">

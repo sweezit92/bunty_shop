@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -37,42 +36,24 @@ $this->load->view("common/header");
 <section class="dashboard_sec m-t-50">
   <div class="container">
     <div class="row">
-      <div class="col-md-3">
-        <div class="dashboard_menu">
-          <div class="dashbord_img">
-            <div class="dashboard_back"> <img class="img-fluid w-100" src="<?php echo base_url('images');?>/dash-background.png" alt="Classified Plus"> </div>
-            <div class="rounded_img"> <img class="img-fluid" src="<?php echo base_url('images');?>/aditya.png" alt="Classified Plus"> </div>
-            <div class="aditya">aditya</div>
-          </div>
-          <ul class="list-unstyled  m-t-20">
-            <li><span><i class="fa fa-address-card"></i></span><a href="<?php echo base_url("admin_add_category");?>"> Add Category </a></li>
-            <li class="active"><span><i class="fa fa-list"></i></span><a href="<?php echo base_url("admin_view_category");?>"> View Categories </a></li>
-            <li><span><i class="fa fa-address-card"></i></span><a href="<?php echo base_url("admin_add_sub_category");?>"> Add Subcategory </a></li>
-            <li><span><i class="fa fa-list"></i></span><a href="<?php echo base_url("admin_view_sub_category");?>"> View Subcategories </a></li>
-			<li><span><i class="fa fa-address-card"></i></span><a href="<?php echo base_url("admin_add_product");?>"> Add Product </a></li>
-            <li><span><i class="fa fa-list"></i></span><a href="<?php echo base_url("admin_product_listing");?>"> Product Listing </a></li>
-            <!-- <li><span><i class="fa fa-star"></i></span><a href="<?php echo base_url("admin_query");?>"> Query </a></li> -->
-            <li><span><i class="fa fa-sign-in"></i></span><a href="<?php echo base_url("home");?>"> Logout </a></li>
-          </ul>>
-        </div>
-      </div>
+      <?php
+	  include("common/admin_sidebar.php");
+	  ?>
       <div class="col-md-9">
+      <?php
+      if($this->session->flashdata('success')){
+      ?>
+      <div class="alert alert-success">
+       <strong><?php echo $this->session->flashdata('success');?></strong>
+      </div>
+      <?php
+      }
+      ?>
         <div class="dashboard_main">
           <div class="dashboard_heding">
             <h3> Categories Listing </h3>
           </div>
-          <!-- <div class="row">
-            <div class=" col-md-12 all_ads">
-              <ul class="list-unstyled m-0">
-                <li class="my_ad m-b-15"><a href="#"> All(42) </a></li>
-                <li class="my_ad m-b-15"><a href="#"> Published (88) </a></li>
-                <li class="my_ad m-b-15"><a href="#"> Featured (12) </a></li>
-                <li class="my_ad m-b-15"><a href="#"> Sold (02) </a></li>
-                <li class="my_ad m-b-15"><a href="#"> Active (42) </a></li>
-                <li class="my_ad m-b-15"><a href="#"> Expired (01) </a></li>
-              </ul>
-            </div>
-          </div> -->
+         
           <div class="row m-t-15">
             <div id="recent-transactions" class="col-12"> <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
               <div class="heading-elements"> </div>
@@ -82,24 +63,28 @@ $this->load->view("common/header");
                     <tr>
                       <th class="border-top text-capitalize">Serial No. </th>
                       <th class="border-top text-capitalize">category </th>
+                      <th class="border-top text-capitalize">Date Added </th>
                       <th class="border-top text-capitalize">action</th>
                     </tr>
                   </thead>
                   <tbody>
-				  <?php
-				  for($i=1;$i<=10;$i++){
-				  ?>
+        				  <?php
+                  $i = 1;
+        				  foreach($get_cat as $fetch_cat){
+        				  ?>
                     <tr>
-                      <td class="text-truncate"><a href="#"> <?php echo $i;?> </a></td>
-					  <td class="text-truncate"><a href="#"> Electronics </a></td>
-                      <td class="text-truncate">
-                        <button type="submit" value="butten"> <i class="fa fa-pencil"></i> </button>
-                        <button type="submit" value="butten"> <i class="fa fa-trash"></i> </button>
+                       <td class="text-truncate"><?php echo $i;?></td>
+					             <td class="text-truncate"><?php echo $fetch_cat->category_name;?></td>
+                       <td class="text-truncate"><?php echo date('d/m/Y',$fetch_cat->category_date);?></td>
+                       <td class="text-truncate">
+                        <a href="<?php echo base_url('admin_edit_category/');?><?php echo $fetch_cat->category_id;?>"> <i class="fa fa-pencil"></i> </a>
+                        <a href="<?php echo base_url('admin_view_category/delete_cat/');?><?php echo $fetch_cat->category_id;?>"> <i class="fa fa-trash"></i> </a>
                       </td>
                     </tr>
-				  <?php
-				  }
-				  ?>
+        				  <?php
+                  $i++;
+        				  }
+        				  ?>
                   </tbody>
                 </table>
               </div>

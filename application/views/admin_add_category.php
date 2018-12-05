@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -33,28 +32,30 @@ $this->load->view("common/header");
 
 <!-- Dashboard_sec -->
 <section class="dashboard_sec m-t-50 m-b-30">
+  
+    
   <div class="container">
     <div class="row">
-      <div class="col-md-3">
-        <div class="dashboard_menu">
-          <div class="dashbord_img">
-            <div class="dashboard_back"> <img class="img-fluid w-100" src="images/dash-background.png" alt="Classified Plus"> </div>
-            <div class="rounded_img"> <img class="img-fluid" src="images/aditya.png" alt="Classified Plus"> </div>
-            <div class="aditya">aditya</div>
-          </div>
-          <ul class="list-unstyled  m-t-20">
-            <li><span><i class="fa fa-address-card"></i></span><a href="<?php echo base_url("admin_add_category");?>"> Add Category </a></li>
-            <li class="active"><span><i class="fa fa-list"></i></span><a href="<?php echo base_url("admin_view_category");?>"> View Categories </a></li>
-            <li><span><i class="fa fa-address-card"></i></span><a href="<?php echo base_url("admin_add_sub_category");?>"> Add Subcategory </a></li>
-            <li><span><i class="fa fa-list"></i></span><a href="<?php echo base_url("admin_view_sub_category");?>"> View Subcategories </a></li>
-			<li><span><i class="fa fa-address-card"></i></span><a href="<?php echo base_url("admin_add_product");?>"> Add Product </a></li>
-            <li><span><i class="fa fa-list"></i></span><a href="<?php echo base_url("admin_product_listing");?>"> Product Listing </a></li>
-            <!-- <li><span><i class="fa fa-star"></i></span><a href="<?php echo base_url("admin_query");?>"> Query </a></li> -->
-            <li><span><i class="fa fa-sign-in"></i></span><a href="<?php echo base_url("home");?>"> Logout </a></li>
-          </ul>
-        </div>
-      </div>
+      <?php
+	  include("common/admin_sidebar.php");
+	  ?>
       <div class="col-md-9">
+	  <?php
+		if($this->session->flashdata('success')){
+	  ?>
+		<div class="alert alert-success">
+		  <strong><?php echo $this->session->flashdata('success');?></strong>
+		</div>
+	  <?php
+	  }
+	  if($this->session->flashdata('failed')){
+	  ?>
+		<div class="alert alert-danger">
+		  <strong><?php echo $this->session->flashdata('failed');?></strong>
+		</div>
+	  <?php
+	  }
+	  ?>
         <div class="dashboard_profile_main">
           <div class="dashboard_heding">
             <h3> Add Category </h3>
@@ -63,12 +64,12 @@ $this->load->view("common/header");
         <div class="row mt-4">
           <div class="col-md-12">
             <div class="profile_detail">
-              <form>
+              <form method="post" action="<?php echo base_url('admin_add_category/add_category');?>">
                 <div class="form-group">
                   <label>Category</label>
-                  <input type="text"  class="form-control" placeholder="Category">
+                  <input type="text" class="form-control" name="cat_name" placeholder="Category" required>
                 </div>
-				<button class="change_btn mt-2 text-capitalize" type="submit" value="button">Add</button>
+				        <button class="change_btn mt-2 text-capitalize" type="submit" value="button">Add</button>
               </form>
             </div>
           </div>

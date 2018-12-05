@@ -5,7 +5,9 @@ class Admin_view_sub_category extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('admin_view_sub_category');
+		$this->load->model('admin_view_sub_category_m');
+		$data['get_sub_cat'] = $this->admin_view_sub_category_m->get_sub_cat();
+		$this->load->view('admin_view_sub_category',$data);
 	}
 
 }

@@ -37,25 +37,9 @@ $this->load->view("common/header");
 <section class="dashboard_sec m-t-50">
   <div class="container">
     <div class="row">
-      <div class="col-md-3">
-        <div class="dashboard_menu">
-          <div class="dashbord_img">
-            <div class="dashboard_back"> <img class="img-fluid w-100" src="<?php echo base_url('images');?>/dash-background.png" alt="Classified Plus"> </div>
-            <div class="rounded_img"> <img class="img-fluid" src="<?php echo base_url('images');?>/aditya.png" alt="Classified Plus"> </div>
-            <div class="aditya">aditya</div>
-          </div>
-          <ul class="list-unstyled  m-t-20">
-            <li><span><i class="fa fa-address-card"></i></span><a href="<?php echo base_url("admin_add_category");?>"> Add Category </a></li>
-            <li class="active"><span><i class="fa fa-list"></i></span><a href="<?php echo base_url("admin_view_category");?>"> View Categories </a></li>
-            <li><span><i class="fa fa-address-card"></i></span><a href="<?php echo base_url("admin_add_sub_category");?>"> Add Subcategory </a></li>
-            <li><span><i class="fa fa-list"></i></span><a href="<?php echo base_url("admin_view_sub_category");?>"> View Subcategories </a></li>
-			<li><span><i class="fa fa-address-card"></i></span><a href="<?php echo base_url("admin_add_product");?>"> Add Product </a></li>
-            <li><span><i class="fa fa-list"></i></span><a href="<?php echo base_url("admin_product_listing");?>"> Product Listing </a></li>
-            <!-- <li><span><i class="fa fa-star"></i></span><a href="<?php echo base_url("admin_query");?>"> Query </a></li> -->
-            <li><span><i class="fa fa-sign-in"></i></span><a href="<?php echo base_url("home");?>"> Logout </a></li>
-          </ul>
-        </div>
-      </div>
+      <?php
+	  include("common/admin_sidebar.php");
+	  ?>
       <div class="col-md-9">
         <div class="dashboard_main">
           <div class="dashboard_heding">
@@ -70,24 +54,30 @@ $this->load->view("common/header");
                     <tr>
                       <th class="border-top text-capitalize">Serial No. </th>
                       <th class="border-top text-capitalize">category </th>
-					  <th class="border-top text-capitalize">subcategory </th>
+					            <th class="border-top text-capitalize">subcategory </th>
+                      <th class="border-top text-capitalize">Added Date </th>
                       <th class="border-top text-capitalize">action</th>
                     </tr>
                   </thead>
                   <tbody>
-				  	<?php
-					 for($i=1;$i<=10;$i++){
-					?>
+  				  	     <?php
+                   $i = 1;
+  					       foreach($get_sub_cat as $fetch_sub_cat){
+  					       ?>
                     <tr>
-                      <td class="text-truncate"><a href="#"> <?php echo $i;?> </a></td>
-					  <td class="text-truncate"><a href="#">Electronics </a></td>
-					  <td class="text-truncate"><a href="#">Mobile Case </a></td>
+                      <td class="text-truncate"><?php echo $i;?></td>
+          					  <td class="text-truncate"><?php echo $fetch_sub_cat->category_name;?></td>
+          					  <td class="text-truncate"><?php echo $fetch_sub_cat->sub_category_name;?></td>
+                      <td class="text-truncate"><?php echo date('d/m/Y',$fetch_sub_cat->sub_category_date);?></td>
                       <td class="text-truncate">
-                        <button type="submit" value="butten"> <i class="fa fa-pencil"></i> </button>
-                        <button type="submit" value="butten"> <i class="fa fa-trash"></i> </button>
+                        <a href="<?php echo base_url('admin_view_sub_category/');?><?php echo $fetch_sub_cat->sub_category_id;?>"> <i class="fa fa-pencil"></i> </a>
+                        <a href="<?php echo base_url('admin_view_sub_category/delete_cat/');?><?php echo $fetch_sub_cat->sub_category_id;?>"> <i class="fa fa-trash"></i> </a>
                       </td>
                     </tr>
-					<?php } ?>
+					         <?php 
+                   $i++;
+                    }
+                   ?>
                   </tbody>
                 </table>
               </div>
