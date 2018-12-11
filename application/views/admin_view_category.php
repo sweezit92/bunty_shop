@@ -62,7 +62,8 @@ $this->load->view("common/header");
                   <thead>
                     <tr>
                       <th class="border-top text-capitalize">Serial No. </th>
-                      <th class="border-top text-capitalize">category </th>
+                      <th class="border-top text-capitalize">Category Name</th>
+					  <th class="border-top text-capitalize">Image</th>
                       <th class="border-top text-capitalize">Date Added </th>
                       <th class="border-top text-capitalize">action</th>
                     </tr>
@@ -74,7 +75,8 @@ $this->load->view("common/header");
         				  ?>
                     <tr>
                        <td class="text-truncate"><?php echo $i;?></td>
-					             <td class="text-truncate"><?php echo $fetch_cat->category_name;?></td>
+					   <td class="text-truncate"><?php echo $fetch_cat->category_name;?></td>
+					   <td class="text-truncate"><img src="<?php echo base_url('uploads/');?><?php echo $fetch_cat->category_image;?>" height="100"></td>
                        <td class="text-truncate"><?php echo date('d/m/Y',$fetch_cat->category_date);?></td>
                        <td class="text-truncate">
                         <a href="<?php echo base_url('admin_edit_category/');?><?php echo $fetch_cat->category_id;?>"> <i class="fa fa-pencil"></i> </a>

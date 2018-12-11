@@ -64,10 +64,14 @@ $this->load->view("common/header");
         <div class="row mt-4">
           <div class="col-md-12">
             <div class="profile_detail">
-              <form method="post" action="<?php echo base_url('admin_add_category/add_category');?>">
+              <form method="post" action="<?php echo base_url('admin_add_category/add_category');?>" enctype="multipart/form-data">
                 <div class="form-group">
                   <label>Category</label>
                   <input type="text" class="form-control" name="cat_name" placeholder="Category" required>
+                </div>
+				<div class="form-group">
+                  <label>Add Image</label>
+                  <input type="file" class="form-control" name="image" required>
                 </div>
 				        <button class="change_btn mt-2 text-capitalize" type="submit" value="button">Add</button>
               </form>

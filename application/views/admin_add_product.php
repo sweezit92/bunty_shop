@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,6 +12,24 @@
 <link href="<?php echo base_url('css');?>/style.css" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo base_url('css');?>/owl.carousel.min.css" />
 <link rel="stylesheet" href="<?php echo base_url('css');?>/owl.theme.default.min.css" />
+<link rel="stylesheet" href="<?php echo base_url('css');?>/bootstrap-fileupload.min.css" />
+<script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
+
+<style>
+.add_more{
+	padding: 6px 20px 8px 20px !important;
+    color: white !important;
+    font-weight: bold !important;
+    font-size: 18px !important;
+	background: #00a651;
+	border-radius: 25px;
+	text-decoration : none;
+}
+.remove{
+background: red;
+}
+
+</style>
 </head>
 <body class="iner_page">
 <?php
@@ -39,6 +56,29 @@ $this->load->view("common/header");
 	  include("common/admin_sidebar.php");
 	  ?>
       <div class="col-md-9">
+	  <?php
+		if($this->session->flashdata('success')){
+	  ?>
+		<div class="alert alert-success">
+		  <strong><?php echo $this->session->flashdata('success');?></strong>
+		</div>
+	  <?php
+	  }
+	  if($this->session->flashdata('failed')){
+	  ?>
+		<div class="alert alert-danger">
+		  <strong><?php echo $this->session->flashdata('failed');?></strong>
+		</div>
+	  <?php
+	  }
+	  if($this->session->flashdata('duplicate')){
+	  ?>
+		<div class="alert alert-danger">
+		  <strong><?php echo $this->session->flashdata('duplicate');?></strong>
+		</div>
+	  <?php
+	  }
+	  ?>
         <div class="dashboard_profile_main">
           <div class="dashboard_heding">
             <h3> Add Product </h3>
@@ -48,75 +88,41 @@ $this->load->view("common/header");
           <div class="col-md-12">
             <div class="profile_detail">
               <h3>Product detail </h3>
-              <form>
+              <form method="post" enctype="multipart/form-data" action="<?php echo base_url('admin_add_product/insert_product');?>">
                 <div class="form-group selectdiv">
                   <label>category</label>
-                  <select class="form-control">
-                    <option>Select a Category</option>
-                    <option>Electronics</option>
-                    <option>Foods & Vegetables</option>
-                    <option>Fashion</option>
-                    <option>Jewellery</option>
+                  <select class="form-control" name="cat_id">
+                    <option selected disabled>Select a category</option>
+                    <?php
+                    foreach ($get_cat as $fetch_cat) {
+                    ?>
+                    <option value="<?php echo $fetch_cat->category_id;?>"><?php echo $fetch_cat->category_name;?></option>
+                    <?php
+                    }
+                    ?>
                   </select>
-                </div>
-                <div class="form-group selectdiv">
-                  <label>subcategory</label>
-                  <select class="form-control">
-                    <option>Select a Subcategory</option>
-                    <option>Mobile Case</option>
-                    <option>AC</option>
-                    <option>Cloths</option>
-                    <option>Necklace</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label>price</label>
-                  <input type="text"  class="form-control" placeholder="Ad your price">
                 </div>
                 
-                <div class="img_browse">
-                  <label>Photos for your Product</label>
-                  <div class="form-group">
-                    <div class="tg-fileuploadlabel">
-                      <label>Please add images of your ad</label>
-                      <button class="form-control-file text-capitalize" type="submit" value="button">Select Files</button>
-                      <span>Maximum upload file size: 500 KB</span> </div>
-                  </div>
+                <div class="form-group">
+                  <label>Product Name</label>
+                  <input type="text" name="product_name" class="form-control" placeholder="Add product name">
+                </div>
+				
+				<div class="form-group  yoo ">
+                  <label>Add Image</label>
+				  <div class="fileupload fileupload-new" data-provides="fileupload"><div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img style="height:150px;" src= "http://via.placeholder.com/190x140" alt=""></div><div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div><div><span class="btn btn-white btn-file" style="margin-left:1px;"><span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span><span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span><input type="file" name="userfile[]" class="default"></span></div></div>
+                </div>
+				<a class="add_more" href="javascript:void(0);" onclick="add_more_image();">Add More</a> 
+				<p>&nbsp;</p>
+				<div class="form-group">
+                  <label>price</label>
+                  <input type="number" name="product_price" class="form-control" placeholder="Add your price">
                 </div>
                 
                 <div class="ad_description">
                   <label>Add Details</label>
                   <div class="form-group">
-                    <div class="ad_description_type">
-                      <div class="note-editor">
-                        <div class="note-toolbar btn-toolbar">
-                          <div class="form-group selectdiv m-0">
-                            <select class="form-control">
-                              <option>Paragraph</option>
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                            </select>
-                          </div>
-                          <div class="note-style btn-group">
-                            <button type="button" class="btn btn-default btn-sm btn-small"><i class="fa fa-bold"></i></button>
-                            <button type="button" class="btn btn-default btn-sm btn-small"><i class="fa fa-italic"></i></button>
-                            <button type="button" class="btn btn-default btn-sm btn-small"><i class="fa fa-underline"></i></button>
-                            <button type="button" class="btn btn-default btn-sm btn-small"><i class="fa fa-text-width"></i></button>
-                          </div>
-                          <div class="note-para btn-group border-left border-right">
-                            <button type="button" class="btn btn-default btn-sm btn-small"><i class="fa fa-list-ul"></i></button>
-                            <button type="button" class="btn btn-default btn-sm btn-small"><i class="fa fa-list-ol"></i></button>
-                          </div>
-                          <div class="note-height btn-group">
-                            <button type="button" class="btn btn-default btn-sm btn-small"><i class="fa fa-chain-broken"></i></button>
-                            <button type="button" class="btn btn-default btn-sm btn-small"><i class="fa fa-link"></i></button>
-                          </div>
-                        </div>
-                        <textarea class="note-codable"></textarea>
-                      </div>
-                    </div>
+                    <textarea class="form-control" name="desc"></textarea>
                   </div>
                 </div>
 				<button class="change_btn mt-2 text-capitalize" type="submit" value="button">add product</button>
@@ -133,6 +139,13 @@ $this->load->view("common/header");
 <?php
 $this->load->view("common/footer");
 ?>
+<script>
+	CKEDITOR.replace( 'desc' );
+	
+	
+
+		
+</script>
 
 <!-- Optional JavaScript --> 
 <!-- jQuery first, then Popper.js, then Bootstrap JS --> 
@@ -143,5 +156,20 @@ $this->load->view("common/footer");
     </script> 
 <script src="<?php echo base_url('js');?>/owl.carousel.min.js"></script> 
 <script src="<?php echo base_url('js');?>/custom.js"></script>
+<script src="<?php echo base_url('js');?>/bootstrap-fileupload.min.js"></script>
+
+<script>
+function add_more_image()
+{
+    var htmlz = '<div class="atrri_add_cont"><div class="fileupload fileupload-new" data-provides="fileupload"><div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img style="height:150px;" src= "http://via.placeholder.com/190x140" alt=""></div><div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div><div style="margin-bottom: 10px"><span class="btn btn-white btn-file" style="margin-left:1px;"><span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span><span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span><input type="file" name="userfile[]" class="default"></span></div><a class="add_more remove" href="javascript:void(0);">Remove</a></div><br/></div>';
+
+         $(".yoo").append(htmlz);
+    
+    $("body").on("click",".remove",function(){ 
+          $(this).parents(".atrri_add_cont").remove();
+      });
+}
+</script>
+
 </body>
 </html>
