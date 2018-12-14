@@ -12,6 +12,8 @@
 <link href="<?php echo base_url('css');?>/style.css" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo base_url('css');?>/owl.carousel.min.css" />
 <link rel="stylesheet" href="<?php echo base_url('css');?>/owl.theme.default.min.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
 </head>
 <body class="iner_page">
 <?php
@@ -25,7 +27,7 @@ $this->load->view("common/header");
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">View Category</li>
+        <li class="breadcrumb-item active" aria-current="page">View Product</li>
       </ol>
     </nav>
   </div>
@@ -51,7 +53,7 @@ $this->load->view("common/header");
       ?>
         <div class="dashboard_main">
           <div class="dashboard_heding">
-            <h3> Categories Listing </h3>
+            <h3> Product Listing </h3>
           </div>
          
           <div class="row m-t-15">
@@ -63,6 +65,7 @@ $this->load->view("common/header");
                     <tr>
                       <th class="border-top text-capitalize">Serial No. </th>
                       <th class="border-top text-capitalize">Category Name</th>
+					  <th class="border-top text-capitalize">Product Name</th>
 					  <th class="border-top text-capitalize">Image</th>
                       <th class="border-top text-capitalize">Date Added </th>
                       <th class="border-top text-capitalize">action</th>
@@ -71,16 +74,20 @@ $this->load->view("common/header");
                   <tbody>
         				  <?php
                   $i = 1;
-        				  foreach($get_cat as $fetch_cat){
+        				  foreach($get_products as $fetch_products){
         				  ?>
                     <tr>
                        <td class="text-truncate"><?php echo $i;?></td>
-					   <td class="text-truncate"><?php echo $fetch_cat->category_name;?></td>
-					   <td class="text-truncate"><img src="<?php echo base_url('uploads/');?><?php echo $fetch_cat->category_image;?>" height="100"></td>
-                       <td class="text-truncate"><?php echo date('d/m/Y',$fetch_cat->category_date);?></td>
+					   <td class="text-truncate"><?php echo $fetch_products->category_name;?></td>
+					   <td class="text-truncate"><?php echo $fetch_products->product_name;?></td>
+					   <?php
+						$get_image = $this->admin_view_product_m->get_image($fetch_products->product_id);
+					   ?>
+					   <td class="text-truncate"><img src="<?php echo base_url('uploads/');?><?php echo $get_image->image_name;?>" height="100"></td>
+                       <td class="text-truncate"><?php echo date('d/m/Y',$fetch_products->product_date);?></td>
                        <td class="text-truncate">
-                        <a href="<?php echo base_url('admin_edit_category/');?><?php echo $fetch_cat->category_id;?>"> <i class="fa fa-pencil"></i> </a>
-                        <a href="<?php echo base_url('admin_view_category/delete_cat/');?><?php echo $fetch_cat->category_id;?>"> <i class="fa fa-trash"></i> </a>
+                        <a href="<?php echo base_url('admin_edit_product/');?><?php echo $fetch_products->product_id;?>"> <i class="fa fa-pencil"></i> </a>
+                        <a href="<?php echo base_url('admin_view_product/delete_product/');?><?php echo $fetch_products->product_id;?>"> <i class="fa fa-trash"></i> </a>
                       </td>
                     </tr>
         				  <?php

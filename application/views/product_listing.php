@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="<?php echo base_url('css');?>/owlcarousel/owl.theme.default.min.css" />
 <link rel="stylesheet" href="<?php echo base_url('css');?>/jquery-ui.css">
 <link rel="stylesheet" href="<?php echo base_url('css');?>/price_range_style.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 <body class="iner_page listing_left_sidebar">
 

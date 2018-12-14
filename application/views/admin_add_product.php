@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="<?php echo base_url('css');?>/owl.theme.default.min.css" />
 <link rel="stylesheet" href="<?php echo base_url('css');?>/bootstrap-fileupload.min.css" />
 <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
 <style>
 .add_more{
