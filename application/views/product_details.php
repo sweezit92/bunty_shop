@@ -40,18 +40,17 @@ $this->load->view("common/header");
   <div class="container">
     <div class="row">
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-        <div class="detail_box"> <img class="img-fluid" src="<?php echo base_url('images');?>/iphone_6s.png" alt="Classified Plus">
+        <div class="detail_box"> <img class="img-fluid" id="imageID" src="<?php echo base_url('images');?>/tshirt_1.jpeg" alt="Classified Plus" style="height:500px;width:100%;">
           <div class="m-t-20">
             <ul class="owl-carousel list-unstyled m-b-0" id="product_slider">
-              <li> <img class="img-fluid" src="<?php echo base_url('images');?>/slider-1.png" alt="slide 1"> </li>
-              <li> <img class="img-fluid" src="<?php echo base_url('images');?>/slider-2.png" alt="slide 2"> </li>
-              <li> <img class="img-fluid" src="<?php echo base_url('images');?>/slider-3.png" alt="slide 3"> </li>
-              <li> <img class="img-fluid" src="<?php echo base_url('images');?>/slider-4.png" alt="slide 4"> </li>
-              <li> <img class="img-fluid" src="<?php echo base_url('images');?>/slider-5.png" alt="slide 5"> </li>
-              <li> <img class="img-fluid" src="<?php echo base_url('images');?>/slider-2.png" alt="slide 6"> </li>
-              <li> <img class="img-fluid" src="<?php echo base_url('images');?>/slider-3.png" alt="slide 7"> </li>
-              <li> <img class="img-fluid" src="<?php echo base_url('images');?>/slider-4.png" alt="slide 8"> </li>
-              <li> <img class="img-fluid" src="<?php echo base_url('images');?>/slider-2.png" alt="slide 9"> </li>
+			<?php
+			for($i=1;$i<=4;$i++){
+			?>
+				<li> <img id="img-fluid_<?php echo $i;?>" class="img-fluid"  src="<?php echo base_url('images');?>/tshirt_<?php echo $i;?>.jpeg" alt="slide <?php echo $i;?>" onclick="show_image(<?php echo $i;?>);" style="height:100px;"> </li>
+			<?php
+			}
+			?>
+              
             </ul>
           </div>
         </div>
@@ -259,5 +258,15 @@ $this->load->view("common/footer");
     </script> 
 <script src="<?php echo base_url('js');?>/owl.carousel.min.js"></script> 
 <script src="<?php echo base_url('js');?>/custom.js"></script>
+
+<script>
+function show_image(e){
+	var img = document.getElementById('img-fluid_'+e+'');
+	var url = img.getAttribute('src'); // foo.jpg
+	jQuery("#imageID").attr('src', url );    
+}
+
+</script>
+
 </body>
 </html>
