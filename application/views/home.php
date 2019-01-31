@@ -6,13 +6,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="<?php echo base_url('css');?>/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="<?php echo base_url('css');?>/bootstrap.min.css">
 <title>Explore+</title>
 <link rel="stylesheet" href="<?php echo base_url('css');?>/font-awesome.min.css" />
 <link href="<?php echo base_url('css');?>/style.css" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo base_url('css');?>/owl.carousel.min.css" />
 <link rel="stylesheet" href="<?php echo base_url('css');?>/owl.theme.default.min.css" />
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />-->
+<style>
+  .categories_box img{
+    height: 200px !important;
+  }
+  .categories_box .overlay{
+    width:101% !important;
+  }
+  
+</style>
 </head>
 <body class="home2">
 
@@ -192,83 +201,19 @@ $this->load->view("common/header");
     </div>
     <!-- Row  -->
     <div class="row">
-	  <div class="col-md-3 m-t-30">
-        <div class="categories_box"> <a href="#"><img src="<?php echo base_url('images');?>/how-to-eat-more-fruits-and-veg.jpg" alt="Classified Plus"/></a>
-          <div class="overlay text-center"> <a href="#"><img src="<?php echo base_url('images');?>/55-512.png" alt="Classified Plus">
-            <p> Foods & Vegetables </p>
+    <?php
+      foreach($fetch_categories AS $each_categories){
+    ?>
+	    <div class="col-md-3 m-t-30">
+        <div class="categories_box"> <a href="#"><img src="<?php echo base_url('uploads');?>/<?php echo $each_categories->category_image;?>" alt="Classified Plus"></a>
+          <div class="overlay text-center"> <a href="#">
+            <p> <?php echo $each_categories->category_name;?> </p>
             </a> </div>
         </div>
       </div>
-      <div class="col-md-3 m-t-30">
-        <div class="categories_box"> <a href="#"><img src="<?php echo base_url('images');?>/Protein-sources.jpg" alt="Classified Plus"/></a>
-          <div class="overlay text-center"> <a href="#"><img src="<?php echo base_url('images');?>/Services.png" alt="Classified Plus"/>
-            <p> Meat & Fish </p>
-            </a> </div>
-        </div>
-      </div>
-      <div class="col-md-3 m-t-30">
-        <div class="categories_box"> <a href="#"><img src="<?php echo base_url('images');?>/Featured-img-2.png" alt="Classified Plus"/></a>
-          <div class="overlay text-center"> <a href="#"><img src="<?php echo base_url('images');?>/Fashion.png" alt="Classified Plus"/>
-            <p> Fashion </p>
-            </a> </div>
-        </div>
-      </div>
-      <div class="col-md-3 m-t-30">
-        <div class="categories_box"> <a href="#"><img src="<?php echo base_url('images');?>/021454-500x500.png" alt="Classified Plus"/></a>
-          <div class="overlay text-center"> <a href="#"><img src="<?php echo base_url('images');?>/Computer_screen_icon_white.png" alt="Classified Plus"/>
-            <p> CCTV, LED, LCD, Laptop </p>
-            </a> </div>
-        </div>
-      </div>
-      <div class="col-md-6 m-t-30">
-        <div class="categories_box"> <a href="#"><img src="<?php echo base_url('images');?>/101619553-465060827.530x298.jpg" alt="Classified Plus"/></a>
-          <div class="overlay text-center"> <a href="#"><img src="<?php echo base_url('images');?>/Real-Estate.png" alt="Classified Plus"/>
-            <p> Travel Bookings </p>
-            </a> </div>
-        </div>
-      </div>
-      <div class="col-md-3 m-t-30">
-        <div class="categories_box"> <a href="#"><img src="<?php echo base_url('images');?>/jewellery.jpg" alt="Classified Plus"/></a>
-          <div class="overlay text-center"> <a href="#"><img src="<?php echo base_url('images');?>/icon-bracelets.png" alt="Classified Plus"/>
-            <p> Jewellery </p>
-            </a> </div>
-        </div>
-      </div>
-	  <div class="col-md-3 m-t-30">
-        <div class="categories_box"> <a href="#"><img src="<?php echo base_url('images');?>/featured.jpg" alt="Classified Plus"/></a>
-          <div class="overlay text-center"> <a href="#"><img src="<?php echo base_url('images');?>/Baby-products.png" alt="Classified Plus"/>
-            <p> Baby Product </p>
-            </a> </div>
-        </div>
-      </div>
-      <div class="col-md-3 m-t-30">
-        <div class="categories_box"> <a href="#"><img src="<?php echo base_url('images');?>/44621fe-inflatsiya-rost-tsen.jpg" alt="Classified Plus"/></a>
-          <div class="overlay text-center"> <a href="#"><img src="<?php echo base_url('images');?>/white-shopping-cart-md.png" alt="Classified Plus"/>
-            <p> Grocery </p>
-            </a> </div>
-        </div>
-      </div>
-	  <div class="col-md-3 m-t-30">
-        <div class="categories_box"> <a href="#"><img src="<?php echo base_url('images');?>/Exporters-of-electronics-products-The-Dollar-Business.jpg" alt="Classified Plus"/></a>
-          <div class="overlay text-center"> <a href="#"><img src="<?php echo base_url('images');?>/Electronics.png" alt="Classified Plus"/>
-            <p> Electronics </p>
-            </a> </div>
-        </div>
-      </div>
-      <div class="col-md-3 m-t-30">
-        <div class="categories_box"> <a href="#"><img src="<?php echo base_url('images');?>/categories1.png" alt="Classified Plus"/></a>
-          <div class="overlay text-center"> <a href="#"><img src="<?php echo base_url('images');?>/Vehicles.png" alt="Classified Plus"/>
-            <p> Used Vehicle </p>
-            </a> </div>
-        </div>
-      </div>
-      <div class="col-md-3 m-t-30">
-        <div class="categories_box"> <a href="#"><img src="<?php echo base_url('images');?>/categories4.png" alt="Classified Plus"/></a>
-          <div class="overlay text-center"> <a href="#"><img src="<?php echo base_url('images');?>/Furniture.png" alt="Classified Plus"/>
-            <p> Furniture </p>
-            </a> </div>
-        </div>
-      </div>
+      <?php
+        }
+      ?>
     </div>
     <!-- <button class="view-btn hvr-pulse-grow" type="submit" value="button">View all</button> -->
   </div>
@@ -286,20 +231,23 @@ $this->load->view("common/header");
     </div>
     <!-- Row  -->
     <div class="row">
+      <?php
+        foreach($fetch_popular_products AS $each_popular_product){
+      ?>
       <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
         <div class="featured-parts rounded m-t-30">
-          <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Featured-img-5.png" alt="Classified Plus"/>
+          <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('uploads');?>/<?php echo $each_popular_product->image_name;?>" alt="Classified Plus" style="height:300px;">
             <!-- <div class="featured-new"> <a href="#"> New </a> </div> -->
             <div class="overlay text-center"> <a href="#"><i class="fa fa-heart-o"></i></a> </div>
           </div>
           <div class="featured-text">
             <div class="text-top">
-              <div class="heading p-b-5"> <a href="#">Electronics</a> </div>
+              <div class="heading p-b-5"> <a href="#"><?php echo $each_popular_product->category_name;?></a> </div>
             </div>
             <div class="text-stars m-t-5">
-              <h3 class="m-t-10">Smartphone for sale</h3>
+              <h3 class="m-t-10"><?php echo $each_popular_product->product_name;?></h3>
               <p>Last Updated 4 hours ago</p>
-              <div class="price m-t-5">INR 8000.00</div>
+              <div class="price m-t-5">INR <?php echo $each_popular_product->product_price;?></div>
             </div>
             <div class="featured-bottum m-t-30">
               <ul class="d-flex justify-content-between list-unstyled m-b-20">
@@ -310,7 +258,10 @@ $this->load->view("common/header");
           </div>
         </div>
       </div>
-      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+      <?php
+        }
+      ?>
+      <!--<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
         <div class="featured-parts rounded m-t-30">
           <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Featured-img-6.png" alt="Classified Plus"/>
             <div class="overlay text-center"> <a href="#"><i class="fa fa-heart-o"></i></a> </div>
@@ -336,7 +287,7 @@ $this->load->view("common/header");
       <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
         <div class="featured-parts rounded m-t-30">
           <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Featured-img-7.png" alt="Classified Plus"/>
-            <!-- <div class="discount"> <a href="#"> Discount 30% </a> </div> -->
+            <!-- <div class="discount"> <a href="#"> Discount 30% </a> </div> 
             <div class="overlay text-center"> <a href="#"><i class="fa fa-heart-o"></i></a> </div>
           </div>
           <div class="featured-text">
@@ -379,7 +330,7 @@ $this->load->view("common/header");
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
   </div>
 </section>
@@ -691,10 +642,9 @@ $this->load->view("common/footer");
 
 <!-- Optional JavaScript --> 
 <!-- jQuery first, then Popper.js, then Bootstrap JS --> 
-<script src="<?php echo base_url('js');?>/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-			  crossorigin="anonymous"></script> 
-<script src="<?php echo base_url('js');?>/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> 
-<script src="<?php echo base_url('js');?>/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+<script src="<?php echo base_url('js');?>/jquery-3.3.1.min.js"></script> 
+<script src="<?php echo base_url('js');?>/popper.min.js"></script> 
+<script src="<?php echo base_url('js');?>/bootstrap.min.js">
     </script> 
 <script src="<?php echo base_url('js');?>/owl.carousel.min.js"></script> 
 <script src="<?php echo base_url('js');?>/custom.js"></script> 

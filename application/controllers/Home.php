@@ -5,7 +5,11 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('home');
+		$this->load->model('home_m');
+		$data['fetch_categories'] = $this->home_m->fetch_categories();
+		$data['fetch_popular_products'] = $this->home_m->fetch_popular_products();
+		
+		$this->load->view('home',$data);
 	}
 
 	public function register()
