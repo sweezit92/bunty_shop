@@ -103,7 +103,7 @@ $this->load->view("common/header");
                       <form method="POST" action="<?php echo base_url('product_listing/price_range');?>/<?php echo $category_id;?>">
                         <div class="m-t-20 m-b-20">
                           <?php
-                            if(!$this->session->userdata['price_range']['price']){
+                            if(empty($this->session->userdata['price_range']['price'])){
                           ?>
                           <input type="range" name="budgetzz"  id="slider-range" class="price-filter-range slider-range2" data-rangeslider  value="0" min="0" max="1000000" onchange="this.form.submit();">
                           <?php
