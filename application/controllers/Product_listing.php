@@ -7,10 +7,50 @@ class Product_listing extends CI_Controller {
 	{
 		$this->load->model('product_listing_m');
 		$data['fetch_all_categories'] = $this->product_listing_m->fetch_categories();
-		$data['fetch_all_products'] = $this->product_listing_m->fetch_products();
+		$cat_id = $this->uri->segment(2);
+		$data['fetch_cat_name'] = $this->product_listing_m->fetch_category($cat_id);
+		$price = $this->session->userdata['price_range']['price'];
+		$sorting_option = $this->session->userdata['sort_by']['sort_by_option'];
+		if($price != ''){
+			$under_price = intval($price);
+		}else{
+			$under_price = intval(999999999999);
+		}
+		if($cat_id != ''){
+			$category_id = $cat_id;
+		}else{
+			$category_id = "";
+		}
+		if($sorting_option != ''){
+			$sorting_by = $sorting_option;
+		}else{
+			$sorting_by = "";
+		}
+		$data['category_id'] = $category_id;
+		$data['fetch_all_products'] = $this->product_listing_m->fetch_products($category_id,$under_price,$sorting_by);
+		
 		$this->load->view('product_listing',$data);
 	}
 
+	public function price_range(){
+		$cat_id = $this->uri->segment(3);
+		$max_price = $this->input->post('budgetzz');
+		$price_session = array(
+			'price' => $max_price,
+		);
+		$session_price_range = $this->session->set_userdata('price_range',$price_session);
+		redirect('product_listing/'.$cat_id.'');
+	}
+
+	public function sort_by_func(){
+		$cat_id = $this->uri->segment(3);
+		$sort_by = $this->input->post('sort_by');
+		$sorting_option = array(
+			'sort_by_option' => $sort_by,
+		);
+		$session_price_range = $this->session->set_userdata('sort_by',$sorting_option);
+		redirect('product_listing/'.$cat_id.'');
+	}
 }
 
 /* End of file Product_listing.php */

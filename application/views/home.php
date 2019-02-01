@@ -205,11 +205,11 @@ $this->load->view("common/header");
       foreach($fetch_categories AS $each_categories){
     ?>
 	    <div class="col-md-3 m-t-30">
-        <div class="categories_box"> <a href="#"><img src="<?php echo base_url('uploads');?>/<?php echo $each_categories->category_image;?>" alt="Classified Plus"></a>
-          <div class="overlay text-center"> <a href="#">
-            <p> <?php echo $each_categories->category_name;?> </p>
-            </a> </div>
+        <a href="<?php echo base_url('product_listing');?>/<?php echo $each_categories->category_id;?>">
+        <div class="categories_box"> <img src="<?php echo base_url('uploads');?>/<?php echo $each_categories->category_image;?>" alt="Classified Plus">
+          <div class="overlay text-center"> <a href="<?php echo base_url('product_listing');?>/<?php echo $each_categories->category_id;?>"><p><?php echo $each_categories->category_name;?></p></a></div>
         </div>
+        </a>
       </div>
       <?php
         }
@@ -236,22 +236,23 @@ $this->load->view("common/header");
       ?>
       <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
         <div class="featured-parts rounded m-t-30">
-          <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('uploads');?>/<?php echo $each_popular_product->image_name;?>" alt="Classified Plus" style="height:300px;">
-            <!-- <div class="featured-new"> <a href="#"> New </a> </div> -->
-            <div class="overlay text-center"> <a href="#"><i class="fa fa-heart-o"></i></a> </div>
-          </div>
+          <a href="<?php echo base_url("product_details");?>/<?php echo $each_popular_product->product_id;?>"><div class="featured-img"><img class="img-fluid rounded-top" src="<?php echo base_url('uploads');?>/<?php echo $each_popular_product->image_name;?>" alt="Classified Plus" style="height:300px;">
+          </div></a>
           <div class="featured-text">
             <div class="text-top">
-              <div class="heading p-b-5"> <a href="#"><?php echo $each_popular_product->category_name;?></a> </div>
+              <div class="heading p-b-5"> <a href="<?php echo base_url("product_details");?>/<?php echo $each_popular_product->product_id;?>"><?php echo $each_popular_product->category_name;?></a> </div>
             </div>
             <div class="text-stars m-t-5">
-              <h3 class="m-t-10"><?php echo $each_popular_product->product_name;?></h3>
-              <p>Last Updated 4 hours ago</p>
+              <ul class="d-flex justify-content-between list-unstyled m-b-20">
+                <li><h3><?php echo $each_popular_product->product_name;?></h3></li>
+                <li class="text-stars"><?php echo date('d/m/Y',$each_popular_product->product_date);?></li>
+              </ul>
+
               <div class="price m-t-5">INR <?php echo $each_popular_product->product_price;?></div>
             </div>
             <div class="featured-bottum m-t-30">
               <ul class="d-flex justify-content-between list-unstyled m-b-20">
-                <li><a href="#"><i class="fa fa-phone"></i> 123 456 789 </a></li>
+                <li><a href="tel:123 456 789"><i class="fa fa-phone"></i> 123 456 789 </a></li>
                 <li class="text-stars"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></li>
               </ul>
             </div>
@@ -261,76 +262,6 @@ $this->load->view("common/header");
       <?php
         }
       ?>
-      <!--<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-        <div class="featured-parts rounded m-t-30">
-          <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Featured-img-6.png" alt="Classified Plus"/>
-            <div class="overlay text-center"> <a href="#"><i class="fa fa-heart-o"></i></a> </div>
-          </div>
-          <div class="featured-text">
-            <div class="text-top">
-              <div class="heading p-b-5"> <a href="#">Vehicles</a> </div>
-            </div>
-            <div class="text-stars m-t-5">
-              <h3 class="m-t-10">Motorcycle for sale</h3>
-              <p>Last Updated 2 hours ago</p>
-              <div class="price m-t-5">INR 15000.00</div>
-            </div>
-            <div class="featured-bottum m-t-30">
-              <ul class="d-flex justify-content-between list-unstyled m-b-20">
-                <li><a href="#"><i class="fa fa-phone"></i> 123 456 789 </a></li>
-                <li class="text-stars"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-        <div class="featured-parts rounded m-t-30">
-          <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Featured-img-7.png" alt="Classified Plus"/>
-            <!-- <div class="discount"> <a href="#"> Discount 30% </a> </div> 
-            <div class="overlay text-center"> <a href="#"><i class="fa fa-heart-o"></i></a> </div>
-          </div>
-          <div class="featured-text">
-            <div class="text-top d-flex justify-content-between ">
-              <div class="heading  p-b-5"> <a href="#">Fashion</a> </div>
-            </div>
-            <div class="text-stars m-t-5">
-              <h3 class="m-t-10">Shoes for sale</h3>
-              <p>Last Updated 8 hours ago</p>
-              <div class="price m-t-5">INR 1200.00</div>
-            </div>
-            <div class="featured-bottum m-t-30">
-              <ul class="d-flex justify-content-between list-unstyled m-b-20">
-                <li><a href="#"><i class="fa fa-phone"></i> 123 456 789 </a></li>
-                <li class="text-stars"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-        <div class="featured-parts rounded m-t-30">
-          <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Featured-img-8.png" alt="Classified Plus"/>
-            <div class="overlay text-center"> <a href="#"><i class="fa fa-heart-o"></i></a> </div>
-          </div>
-          <div class="featured-text">
-            <div class="text-top">
-              <div class="heading p-b-5"> <a href="#">Furniture</a> </div>
-            </div>
-            <div class="text-stars m-t-5">
-              <h3 class="m-t-10">Bed for sale</h3>
-              <p>Last Updated 5 hours ago</p>
-              <div class="price m-t-5">INR 4500.00</div>
-            </div>
-            <div class="featured-bottum m-t-30">
-              <ul class="d-flex justify-content-between list-unstyled m-b-20">
-                <li><a href="#"><i class="fa fa-phone"></i> 123 456 789 </a></li>
-                <li class="text-stars"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>-->
     </div>
   </div>
 </section>

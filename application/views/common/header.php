@@ -11,17 +11,16 @@
 			<li class="nav-item"> <a class="nav-link"  href="<?php echo base_url("about");?>"><b>About</b></a></li>
 			<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <b>Category</b> </a>
               <ul class="b-none dropdown-menu font-14 animated fadeInUp">
-                <li><a class="dropdown-item" href="<?php echo base_url("product_listing");?>"><b>Food & Vegetables</b> </a></li>
-                <li><a class="dropdown-item" href="<?php echo base_url("product_listing");?>"><b>Meat & Fish</b></a></li>
-				<li><a class="dropdown-item" href="<?php echo base_url("product_listing");?>"><b>Fashion</b></a></li>
-                <li><a class="dropdown-item" href="<?php echo base_url("product_listing");?>"><b>CCTV,Laptop,LCD,LED</b></a></li> 
-				<li><a class="dropdown-item" href="<?php echo base_url("product_listing");?>"><b>Travel Bookings</b></a></li>
-				<li><a class="dropdown-item" href="<?php echo base_url("product_listing");?>"><b>Jewellery</b></a></li>
-				<li><a class="dropdown-item" href="<?php echo base_url("product_listing");?>"><b>Baby Product</b></a></li>
-				<li><a class="dropdown-item" href="<?php echo base_url("product_listing");?>"><b>Grocery</b></a></li>
-				<li><a class="dropdown-item" href="<?php echo base_url("product_listing");?>"><b>Electronics</b></a></li>
-				<li><a class="dropdown-item" href="<?php echo base_url("product_listing");?>"><b>Used Vehicle</b></a></li>
-				<li><a class="dropdown-item" href="<?php echo base_url("product_listing");?>"><b>Furniture</b></a></li>
+              <?php
+          		$ci =&get_instance();
+				$ci->load->model('home_m');
+				$get_categories = $ci->home_m->fetch_categories();
+				foreach($get_categories AS $each_categories){
+              ?>
+                <li><a class="dropdown-item" href="<?php echo base_url("product_listing");?>/<?php echo $each_categories->category_id;?>"><b><?php echo $each_categories->category_name;?></b> </a></li>
+            <?php
+				}
+			?>
 			  </ul>
 			</li>
 			<li class="nav-item"> <a class="nav-link"  href="<?php echo base_url("product_listing");?>"><b>Product</b></a></li>

@@ -28,7 +28,7 @@ $this->load->view("common/header");
       <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
         <li class="breadcrumb-item"><a href="#">Detail</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Mobile</li>
+        <li class="breadcrumb-item active" aria-current="page"><?php echo $fetch_pro_one_image->category_name;?></li>
       </ul>
     </nav>
   </div>
@@ -40,17 +40,16 @@ $this->load->view("common/header");
   <div class="container">
     <div class="row">
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-        <div class="detail_box"> <img class="img-fluid" id="imageID" src="<?php echo base_url('images');?>/tshirt_1.jpeg" alt="Classified Plus" style="height:500px;width:100%;">
+        <div class="detail_box"><img class="img-fluid" id="imageID" src="<?php echo base_url('uploads');?>/<?php echo $fetch_pro_one_image->image_name;?>" alt="Classified Plus" style="height:500px;width:100%;">
           <div class="m-t-20">
             <ul class="owl-carousel list-unstyled m-b-0" id="product_slider">
-			<?php
-			for($i=1;$i<=4;$i++){
-			?>
-				<li> <img id="img-fluid_<?php echo $i;?>" class="img-fluid"  src="<?php echo base_url('images');?>/tshirt_<?php echo $i;?>.jpeg" alt="slide <?php echo $i;?>" onclick="show_image(<?php echo $i;?>);" style="height:100px;"> </li>
-			<?php
-			}
-			?>
-              
+        			<?php
+        			   foreach($fetch_pro_data AS $pro_data){
+        			?>
+        				<li> <img id="img-fluid_<?php echo $pro_data->image_id;?>" class="img-fluid"  src="<?php echo base_url('uploads');?>/<?php echo $pro_data->image_name;?>" alt="slide <?php echo $pro_data->image_id;?>" onclick="show_image(<?php echo $pro_data->image_id;?>);" style="height:100px;"> </li>
+        			<?php
+        			   }
+        			?>
             </ul>
           </div>
         </div>
@@ -58,34 +57,19 @@ $this->load->view("common/header");
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
         <div class="detail_box">
           <div class="detail_head">
-            <h3> Apple iPhone 6S (Space Gray, 16 GB)<br>
-              Good Condition </h3>
-            <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-            <ul class="list-unstyled text-capitalize m-b-0 m-t-15">
-              <li class="d-inline-block p-r-20"><a href="#"> <i class="fa fa-clock-o"></i> <span> 7 Jan, 17 10:10 pm </span></a> </li>
-              <li class="d-inline-block p-r-20"><a href="#"> <i class="fa fa-tags"></i><span> new </span></a> </li>
-              <li class="d-inline-block"><a href="#"> <i class="fa fa-eye"></i> <span> view </span> </a> </li>
-            </ul>
+            <ul class="d-flex justify-content-between list-unstyled m-b-20">
+                <li><h3> <?php echo $fetch_pro_one_image->product_name;?></h3></li>
+                <li class="d-inline-block p-r-20"><a href="#"> <i class="fa fa-clock-o">&nbsp;<span><?php echo date('d/m/Y',$fetch_pro_one_image->product_date);?></span></i></a> </li>
+              </ul>
           </div>
-          <ul class="list-unstyled d-inline-block float-left detail_left m-b-0">
-            <li>Handset color :</li>
-            <li>Primary Camera :</li>
-            <li>Processor :</li>
-            <li>Screen Size :</li>
-            <li>Internal Memory :</li>
-          </ul>
-          <ul class="list-unstyled d-inline-block m-l-40 detail_right  m-b-0">
-            <li>Black</li>
-            <li>13 MP</li>
-            <li>1.56 GHz + 1.82 GHz</li>
-            <li>5.5 Inches</li>
-            <li>6 GB</li>
-          </ul>
+          <p> <?php echo $fetch_pro_one_image->product_desc;?></p>
+          <?php
+            if($fetch_pro_one_image->category_name == 'Services'){
+          ?>
           <div class="detail_bottum m-t-15">
             <div class="row">
               <div class="col-lg-12 col-xl-6 col-md-12 col-sm-12 col-12">
                 <div class="form-check">
-                  <input class="form-check-input" value="" type="checkbox">
                   <label class="form-check-label"> </label>
                   <img src="<?php echo base_url('images');?>/warrenty.png" alt="Classified Plus">
                   <div class="warranty d-inline-block">Onsite Assure Warranty*<br>
@@ -94,7 +78,6 @@ $this->load->view("common/header");
               </div>
               <div class="col-lg-12 col-xl-6 col-md-12 col-sm-12 col-12">
                 <div class="form-check">
-                  <input class="form-check-input" value="" type="checkbox">
                   <label class="form-check-label"> </label>
                   <img src="<?php echo base_url('images');?>/insurance.png" alt="Classified Plus">
                   <div class="warranty d-inline-block">SyncNscan Insurance (12 mon.)<br>
@@ -103,10 +86,13 @@ $this->load->view("common/header");
               </div>
             </div>
           </div>
+          <?php
+            }
+          ?>
           <div class="detail_prize p-t-10">
             <ul class="list-unstyled">
               <li class="d-inline-block pr-3"> Deal Price : </li>
-              <li class="d-inline-block Price_m"> INR 950.00 </li>
+              <li class="d-inline-block Price_m"> INR <?php echo $fetch_pro_one_image->product_price;?> </li>
             </ul>
           </div>
           <div class="detail_btn d-flex m-t-20">
@@ -135,10 +121,7 @@ $this->load->view("common/header");
     <div class="row">
       <div class="col-md-12">
         <div class="description_box">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-          <p>Condition 10/10 White color 32gb internal memory 3gb RAM Model SM-N9005 (4G/LTE) All accessories (box, hands-free, charger, data cable)
-            Not refurb, Not copy, original samsung phone</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          <?php echo $fetch_pro_one_image->product_desc;?>
         </div>
       </div>
     </div>
@@ -153,34 +136,54 @@ $this->load->view("common/header");
     <!-- Row  -->
     <div class="row justify-content-center">
       <div class="col-md-7 text-center m-b-10">
-        <h2 class="title">Related Ads</h2>
+        <h2 class="title">Related Products</h2>
       </div>
     </div>
     <!-- Row  -->
     
     <div class="row">
+      <?php
+        foreach($fetch_related_data AS $each_related_data){
+      ?>
       <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
         <div class="featured-parts rounded m-t-30">
-          <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Featured-img-1.png" alt="Classified Plus">
-            <div class="featured-new bg_warning1"> <a href="#"> New </a> </div>
+          <div class="featured-img"> 
+            <?php
+              $product_id = $each_related_data->product_id;
+              $this->load->model('product_details_m');
+              $fetch_image = $this->product_details_m->fetch_image_product($product_id);
+            ?>
+            <img class="img-fluid rounded-top" src="<?php echo base_url('uploads');?>/<?php echo $fetch_image->image_name;?>" alt="Classified Plus" style="height:250px;">
+            <!--<div class="featured-new bg_warning1"> <a href="#"> New </a> </div>-->
           </div>
           <div class="featured-text">
-            <div class="text-top d-flex justify-content-between ">
-              <div class="heading"> <a href="#">Mobile</a> </div>
-              <div class="book-mark"><a href="#"><i class="fa fa-bookmark"></i></a></div>
-            </div>
             <div class="text-stars m-t-5">
-              <p>Smartphone for sele</p>
-              <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
+              <a href="<?php echo base_url("product_details");?>/<?php echo $each_related_data->product_id;?>"><h3 class="m-t-10" style="font-size:18px;">
+                <?php 
+                  $pro_name = $each_related_data->product_name;
+                  $trim_pro_name = substr($pro_name,0,25);
+                  echo $trim_pro_name;
+                  echo "...";
+                ?>
+              </h3></a>
+              <ul class="d-flex justify-content-between list-unstyled m-b-20">
+                <li><span style="font-size:13px;"><?php echo date('d/m/Y',$each_related_data->product_date);?></span></li>
+                <li class="text-stars"><strong>INR <?php echo $each_related_data->product_price;?></strong></li>
+              </ul>
+            </div>
             <div class="featured-bottum m-t-30">
               <ul class="d-flex justify-content-between list-unstyled m-b-20">
-                <li><a href="#"><i class="fa fa-map-marker"></i> East 7th street 98 </a></li>
-                <li><a href="#"><i class="fa fa-heart-o"></i> Save</a> </li>
+                <li><a href="#"><i class="fa fa-phone"></i> 123 456 789 </a></li>
+                <li class="text-stars"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
+      <?php
+        }
+      ?>
+     <!------------
       <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
         <div class="featured-parts rounded m-t-30">
           <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Featured-img-2.png" alt="Classified Plus"> </div>
@@ -240,7 +243,7 @@ $this->load->view("common/header");
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
   </div>
 </section>
 <!-- End top_listings --> 

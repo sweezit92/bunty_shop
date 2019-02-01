@@ -52,7 +52,7 @@ $this->load->view("common/header");
     <div class="row justify-content-center">
       <div class="col-md-7 text-center">
         <h2 class="title">Select one of the best listings</h2>
-        <h6 class="subtitle">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h6>
+        <!--<h6 class="subtitle">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h6>-->
       </div>
     </div>
     <!-- Row  -->
@@ -74,16 +74,16 @@ $this->load->view("common/header");
                 <?php
                   foreach($fetch_all_categories AS $each_category){
                 ?>
-                <li><a href="#"><?php echo $each_category->category_name;?>(1029)</a></li>
+                <li><a href="<?php echo base_url('product_listing');?>/<?php echo $each_category->category_id;?>"><?php echo $each_category->category_name;?></a></li>
                <?php
                   }
                ?>
               </ul>
             </div>
-            <div class="single-sidebar">
+            <!--<div class="single-sidebar">
               <div class="sec-title">
                 <h3 class="condition mb-2">Condition</h3>
-                              <div class="form-group form-check condition-slide">
+                <div class="form-group form-check condition-slide">
                 <input type="checkbox" class="form-check-input">
                 <label class="form-check-label text-uppercase">New</label>
               </div>
@@ -92,23 +92,36 @@ $this->load->view("common/header");
                 <label class="form-check-label text-uppercase">Used</label>
               </div>
               </div>
-            </div>
+            </div>-->
             
             <div class="single-sidebar">
               <div class="sec-title">
                 <h3 class="price_r mb-2">Price Range</h3>
                   <div class="price-range-block">
-	<div id="slider-range" class="price-filter-range slider-range2"></div>
-
-	<div class="m-t-20 m-b-20">
-	  <input type="text" oninput="validity.valid||(value='0');" id="min_price" class="price-range-field" />
-	  <input type="text" oninput="validity.valid||(value='10000');" id="max_price" class="price-range-field price-range-field2"/>
-	</div>
-
-</div>
+                  	<!--<div id="slider-range" class="price-filter-range slider-range2"></div>-->
+                  	
+                      <form method="POST" action="<?php echo base_url('product_listing/price_range');?>/<?php echo $category_id;?>">
+                        <div class="m-t-20 m-b-20">
+                          <?php
+                            if(!$this->session->userdata['price_range']['price']){
+                          ?>
+                          <input type="range" name="budgetzz"  id="slider-range" class="price-filter-range slider-range2" data-rangeslider  value="0" min="0" max="1000000" onchange="this.form.submit();">
+                          <?php
+                            }else{
+                              $max_price = $this->session->userdata['price_range']['price'];
+                          ?> 
+                            <input type="range" name="budgetzz"  id="slider-range" class="price-filter-range slider-range2" data-rangeslider  value="<?php echo $max_price;?>" min="0" max="1000000" onchange="this.form.submit();">
+                          <?php
+                            }
+                          ?>
+                          <!--<input type="range" id="min_price" data-rangeslider class="price-range-field" name="minimum_price" onchange="this.form.submit();"/>
+                          <input type="range" id="max_price" data-rangeslider class="price-range-field price-range-field2" name="maximum_price" onchange="this.form.submit();"/>-->
+                        </div>
+                      </form>
+                  	
+                  </div>
                 </div>
-                </div>
-
+              </div>
           </div>
         </div>
       </div>
@@ -117,224 +130,75 @@ $this->load->view("common/header");
  <div class="col-md-12 col-sm-12 col-xs-12 m-b-10">
         <div class="listing-select-parts d-flex justify-content-between">
           <div class="listing-select-head-left d-inline-block">
-            <h3> Showing ( 1-12 products of 7,371 products  ) </h3>
+            <?php
+              if(!empty($fetch_cat_name->category_name)){
+            ?>
+              <h2> <?php echo $fetch_cat_name->category_name;?></h2>
+            <?php
+              }else{
+            ?>
+              <h2>All Categories</h2>
+            <?php
+              }
+            ?>
           </div>
           <div class="listing-select-head-right d-inline-block ">
             
             <div class="sort_by d-inline-block pl-3">
-            <form>
+            <form  method="POST" action="<?php echo base_url('product_listing/sort_by_func');?>/<?php echo $category_id;?>">
               <div class="form-group">
-                <select class="form-control">
+                <select class="form-control" name="sort_by" onchange="this.form.submit();">
                   <option>Shop by</option>
-                  <option selected>Popular</option>
-                  <option>Price</option>
-                  <option>Relevant</option>
-                  <option>Latest</option>
+                  <option selected value="Popular">Popular</option>
+                  <option value="Price">Price</option>
+                  <option value="Relevant">Relevant</option>
+                  <option value="Latest">Latest</option>
                 </select>
               </div>
             </form>
             </div> </div>
             </div>
       </div>
+      <?php
+        if(!empty($fetch_all_products)){
+        foreach($fetch_all_products AS $each_productzz){
+      ?>
       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-        <div class="featured-parts rounded m-t-30">
-          <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Featured-img-1.png" alt="Classified Plus">
+        <div class="featured-parts rounded m-t-30" style="height:400px;">
+          <div class="featured-img"><a href="<?php echo base_url("product_details");?>/<?php echo $each_productzz->product_id;?>"> <img class="img-fluid rounded-top" src="<?php echo base_url('uploads');?>/<?php echo $each_productzz->image_name;?>" alt="Classified Plus" style="height:250px;"></a>
             <!-- <div class="featured-new bg_warning1"> <a href="#"> New </a> </div> -->
           </div>
           <div class="featured-text">
-            <div class="text-top d-flex justify-content-between ">
-              <div class="heading"> <a href="<?php echo base_url("product_details");?>">Mobile</a> </div>
-              <div class="book-mark"><a href="<?php echo base_url("product_details");?>"><i class="fa fa-bookmark"></i></a></div>
-            </div>
-            <div class="text-stars m-t-5">
-              <p>Smartphone for sale</p>
-              <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-            <div class="featured-bottum m-t-30">
+             <ul class="d-flex justify-content-between list-unstyled m-b-20">
+                <li><?php 
+                  $pro_name = $each_productzz->product_name;
+                  $trim_pro_name = substr($pro_name,0,20);
+                  echo $trim_pro_name;
+                  echo "...";
+                ?></li>
+                <li><strong>INR <?php echo $each_productzz->product_price;?></strong></li>
+              </ul>
+            <div class="text-stars featured-bottum m-t-30">
               <ul class="d-flex justify-content-between list-unstyled m-b-20">
-                <li><a href="<?php echo base_url("product_details");?>"><i class="fa fa-map-marker"></i> East 7th street 98 </a></li>
-                <li><a href="<?php echo base_url("product_details");?>"><i class="fa fa-heart-o"></i> Save</a> </li>
+                <li><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></li>
+                <li><a href="<?php echo base_url("product_details");?>/<?php echo $each_productzz->product_id;?>"><i class="fa fa-heart-o"></i> Save</a> </li>
               </ul>
             </div>
           </div>
         </div>
       </div>
+      <?php
+        }
+      }else{
+      ?>
       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-        <div class="featured-parts rounded m-t-30">
-          <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Featured-img-2.png" alt="Classified Plus"> </div>
-          <div class="featured-text">
-            <div class="text-top d-flex justify-content-between ">
-              <div class="heading"> <a href="<?php echo base_url("product_details");?>">Fashion</a> </div>
-              <div class="book-mark"><a href="<?php echo base_url("product_details");?>"><i class="fa fa-bookmark-o"></i></a></div>
-            </div>
-            <div class="text-stars m-t-5">
-              <p>Cloth for sale</p>
-              <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-            <div class="featured-bottum m-t-30">
-              <ul class="d-flex justify-content-between list-unstyled m-b-20">
-                <li><a href="<?php echo base_url("product_details");?>"><i class="fa fa-map-marker"></i> East 7th street 98 </a></li>
-                <li><a href="<?php echo base_url("product_details");?>"><i class="fa fa-heart-o"></i> Save</a> </li>
-              </ul>
-            </div>
-          </div>
+        <div class=" m-t-30">
+          <strong>Sorry, no results found...</strong>
         </div>
       </div>
-      
-      
-      
-            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-        <div class="featured-parts rounded m-t-30">
-          <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Featured-img-9.png" alt="Classified Plus">
-            
-          </div>
-          <div class="featured-text">
-            <div class="text-top d-flex justify-content-between ">
-              <div class="heading"> <a href="<?php echo base_url("product_details");?>">Vehicles</a> </div>
-              <div class="book-mark"><a href="<?php echo base_url("product_details");?>"><i class="fa fa-bookmark"></i></a></div>
-            </div>
-            <div class="text-stars m-t-5">
-              <p>Renger cycle for sale</p>
-              <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-            <div class="featured-bottum m-t-30">
-              <ul class="d-flex justify-content-between list-unstyled m-b-20">
-                <li><a href="<?php echo base_url("product_details");?>"><i class="fa fa-map-marker"></i> East 7th street 98 </a></li>
-                <li><a href="<?php echo base_url("product_details");?>"><i class="fa fa-heart-o"></i> Save</a> </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-        <div class="featured-parts rounded m-t-30">
-          <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Featured-img-11.png" alt="Classified Plus">
-          </div>
-          <div class="featured-text">
-            <div class="text-top d-flex justify-content-between ">
-              <div class="heading"> <a href="<?php echo base_url("product_details");?>">Real Estate</a> </div>
-              <div class="book-mark"><a href="<?php echo base_url("product_details");?>"><i class="fa fa-bookmark"></i></a></div>
-            </div>
-            <div class="text-stars m-t-5">
-              <p>Luxury house for sale</p>
-              <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-            <div class="featured-bottum m-t-30">
-              <ul class="d-flex justify-content-between list-unstyled m-b-20">
-                <li><a href="<?php echo base_url("product_details");?>"><i class="fa fa-map-marker"></i> East 7th street 98 </a></li>
-                <li><a href="<?php echo base_url("product_details");?>"><i class="fa fa-heart-o"></i> Save</a> </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      
-            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-        <div class="featured-parts rounded m-t-30">
-          <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Featured-img-13.png" alt="Classified Plus">
-          </div>
-          <div class="featured-text">
-            <div class="text-top d-flex justify-content-between ">
-              <div class="heading"> <a href="<?php echo base_url("product_details");?>">Fashion</a> </div>
-              <div class="book-mark"><a href="<?php echo base_url("product_details");?>"><i class="fa fa-bookmark"></i></a></div>
-            </div>
-            <div class="text-stars m-t-5">
-              <p>Ladies sandal for sale</p>
-              <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-            <div class="featured-bottum m-t-30">
-              <ul class="d-flex justify-content-between list-unstyled m-b-20">
-                <li><a href="<?php echo base_url("product_details");?>"><i class="fa fa-map-marker"></i> East 7th street 98 </a></li>
-                <li><a href="<?php echo base_url("product_details");?>"><i class="fa fa-heart-o"></i> Save</a> </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-        <div class="featured-parts rounded m-t-30">
-          <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Featured-img-16.png" alt="Classified Plus"> </div>
-          <div class="featured-text">
-            <div class="text-top d-flex justify-content-between ">
-              <div class="heading"> <a href="<?php echo base_url("product_details");?>">Vehicles</a> </div>
-              <div class="book-mark"><a href="<?php echo base_url("product_details");?>"><i class="fa fa-bookmark"></i></a></div>
-            </div>
-            <div class="text-stars m-t-5">
-              <p>Car BMW for sales</p>
-              <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-            <div class="featured-bottum m-t-30">
-              <ul class="d-flex justify-content-between list-unstyled m-b-20">
-                <li><a href="<?php echo base_url("product_details");?>"><i class="fa fa-map-marker"></i> East 7th street 98 </a></li>
-                <li><a href="<?php echo base_url("product_details");?>"><i class="fa fa-heart-o"></i> Save</a> </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-            
-      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-        <div class="featured-parts rounded m-t-30">
-          <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Featured-img-18.png" alt="Classified Plus"> </div>
-          <div class="featured-text">
-            <div class="text-top d-flex justify-content-between ">
-              <div class="heading"> <a href="<?php echo base_url("product_details");?>">Furniture</a> </div>
-              <div class="book-mark"><a href="<?php echo base_url("product_details");?>"><i class="fa fa-bookmark-o"></i></a></div>
-            </div>
-            <div class="text-stars m-t-5">
-              <p>Bed sheet for sale</p>
-              <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-            <div class="featured-bottum m-t-30">
-              <ul class="d-flex justify-content-between list-unstyled m-b-20">
-                <li><a href="<?php echo base_url("product_details");?>"><i class="fa fa-map-marker"></i> East 7th street 98 </a></li>
-                <li><a href="<?php echo base_url("product_details");?>"><i class="fa fa-heart-o"></i> Save</a> </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-        <div class="featured-parts rounded m-t-30">
-          <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Featured-img-19.png" alt="Classified Plus">
-          </div>
-          <div class="featured-text">
-            <div class="text-top d-flex justify-content-between ">
-              <div class="heading"> <a href="<?php echo base_url("product_details");?>">Baby products</a> </div>
-              <div class="book-mark"><a href="<?php echo base_url("product_details");?>"><i class="fa fa-bookmark"></i></a></div>
-            </div>
-            <div class="text-stars m-t-5">
-              <p>Bed sheet for sale</p>
-              <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-            <div class="featured-bottum m-t-30">
-              <ul class="d-flex justify-content-between list-unstyled m-b-20">
-                <li><a href="<?php echo base_url("product_details");?>"><i class="fa fa-map-marker"></i> East 7th street 98 </a></li>
-                <li><a href="<?php echo base_url("product_details");?>"><i class="fa fa-heart-o"></i> Save</a> </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-        <div class="featured-parts rounded m-t-30">
-          <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Featured-img-12.png" alt="Classified Plus"> </div>
-          <div class="featured-text">
-            <div class="text-top d-flex justify-content-between ">
-              <div class="heading"> <a href="<?php echo base_url("product_details");?>">Mobile</a> </div>
-              <div class="book-mark"><a href="<?php echo base_url("product_details");?>"><i class="fa fa-bookmark"></i></a></div>
-            </div>
-            <div class="text-stars m-t-5">
-              <p>Smartphone for sale</p>
-              <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-            <div class="featured-bottum m-t-30">
-              <ul class="d-flex justify-content-between list-unstyled m-b-20">
-                <li><a href="<?php echo base_url("product_details");?>"><i class="fa fa-map-marker"></i> East 7th street 98 </a></li>
-                <li><a href="<?php echo base_url("product_details");?>"><i class="fa fa-heart-o"></i> Save</a> </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-      <div class="col-md-12">
-      <button class="view-btn hvr-pulse-grow" type="submit" value="button">View all</button>
-      </div>
+      <?php
+        }
+      ?>
     </div>
     </div>
     </div>
@@ -379,6 +243,7 @@ $(document).ready(function(){
         $(".price-range-block").slideToggle("slow");
     });
 });
+
 </script>
 <script src="<?php echo base_url('js');?>/price_range_script.js"></script>
 <script src="<?php echo base_url('js');?>/jquery-ui.js"></script> 
