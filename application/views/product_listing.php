@@ -13,8 +13,10 @@
 <link rel="stylesheet" href="<?php echo base_url('css');?>/owlcarousel/owl.carousel.min.css" />
 <link rel="stylesheet" href="<?php echo base_url('css');?>/owlcarousel/owl.theme.default.min.css" />
 <link rel="stylesheet" href="<?php echo base_url('css');?>/jquery-ui.css">
-<link rel="stylesheet" href="<?php echo base_url('css');?>/price_range_style.css">
+<!--<link rel="stylesheet" href="<?php echo base_url('css');?>/price_range_style.css">-->
+<link rel="stylesheet" href="<?php echo base_url('css');?>/rangeslider.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
 </head>
 <body class="iner_page listing_left_sidebar">
 
@@ -102,15 +104,16 @@ $this->load->view("common/header");
                   	
                       <form method="POST" action="<?php echo base_url('product_listing/price_range');?>/<?php echo $category_id;?>">
                         <div class="m-t-20 m-b-20">
+                          <h6 style="color:#73859B;">INR&nbsp;<span class="budget"><span></h6>
                           <?php
                             if(empty($this->session->userdata['price_range']['price'])){
                           ?>
-                          <input type="range" name="budgetzz"  id="slider-range" class="price-filter-range slider-range2" data-rangeslider  value="0" min="0" max="1000000" onchange="this.form.submit();">
+                            <input type="range" name="budgetzz"  id="myRange" data-rangeslider  value="0" min="0" max="10000" onchange="this.form.submit();">
                           <?php
                             }else{
                               $max_price = $this->session->userdata['price_range']['price'];
                           ?> 
-                            <input type="range" name="budgetzz"  id="slider-range" class="price-filter-range slider-range2" data-rangeslider  value="<?php echo $max_price;?>" min="0" max="1000000" onchange="this.form.submit();">
+                            <input type="range" name="budgetzz"  id="myRange" data-rangeslider  value="<?php echo $max_price;?>" min="0" max="10000" onchange="this.form.submit();">
                           <?php
                             }
                           ?>
@@ -238,14 +241,48 @@ $(document).ready(function(){
     });
 });
 
-$(document).ready(function(){
-    $(".price_r").on('click', function(e){
-        $(".price-range-block").slideToggle("slow");
-    });
-});
-
 </script>
-<script src="<?php echo base_url('js');?>/price_range_script.js"></script>
+
+<script>
+    $(function() {
+
+        var $document = $(document);
+        var selector = '[data-rangeslider]';
+        var $element = $(selector);
+
+        // For ie8 support
+        var textContent = ('textContent' in document) ? 'textContent' : 'innerText';
+
+        // Example functionality to demonstrate a value feedback
+        function valueOutput(element) {
+        var new_val = $('#myRange').val();
+            $('span.budget').text(new_val);
+        }
+
+        $document.on('input', 'input[type="range"], ' + selector, function(e) {
+            valueOutput(e.target);
+        });
+
+        // Basic rangeslider initialization
+        $element.rangeslider({
+
+        // Deactivate the feature detection
+        polyfill: false,
+
+        // Callback function
+        onInit: function() {
+            valueOutput(this.$element[0]);
+        },
+           
+        });
+
+    });
+
+
+    </script>
+
+<script src="<?php echo base_url('js');?>/rangeslider.js"></script>
+<!--<script src="<?php echo base_url('js');?>/price_range_script.js"></script>-->
 <script src="<?php echo base_url('js');?>/jquery-ui.js"></script> 
 </body>
 </html>
