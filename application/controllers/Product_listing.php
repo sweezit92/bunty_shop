@@ -12,7 +12,7 @@ class Product_listing extends CI_Controller {
 		if(!empty($this->session->userdata['price_range']['price'])){
 			$under_price = intval($this->session->userdata['price_range']['price']);
 		}else{
-			$under_price = 999999999999;
+			$under_price = 999999;
 		}
 		if($cat_id != ''){
 			$category_id = $cat_id;

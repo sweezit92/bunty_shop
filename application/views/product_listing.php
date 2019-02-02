@@ -108,12 +108,12 @@ $this->load->view("common/header");
                           <?php
                             if(empty($this->session->userdata['price_range']['price'])){
                           ?>
-                            <input type="range" name="budgetzz"  id="myRange" data-rangeslider  value="0" min="0" max="10000" onchange="this.form.submit();">
+                            <input type="range" name="budgetzz"  id="myRange" data-rangeslider  value="999999" min="0" max="999999" onchange="this.form.submit();">
                           <?php
                             }else{
                               $max_price = $this->session->userdata['price_range']['price'];
                           ?> 
-                            <input type="range" name="budgetzz"  id="myRange" data-rangeslider  value="<?php echo $max_price;?>" min="0" max="10000" onchange="this.form.submit();">
+                            <input type="range" name="budgetzz"  id="myRange" data-rangeslider  value="<?php echo $max_price;?>" min="0" max="999999" onchange="this.form.submit();">
                           <?php
                             }
                           ?>
