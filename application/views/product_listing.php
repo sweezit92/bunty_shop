@@ -100,28 +100,23 @@ $this->load->view("common/header");
               <div class="sec-title">
                 <h3 class="price_r mb-2">Price Range</h3>
                   <div class="price-range-block">
-                  	<!--<div id="slider-range" class="price-filter-range slider-range2"></div>-->
-                  	
                       <form method="POST" action="<?php echo base_url('product_listing/price_range');?>/<?php echo $category_id;?>">
                         <div class="m-t-20 m-b-20">
                           <h6 style="color:#73859B;">INR&nbsp;<span class="budget"><span></h6>
                           <?php
                             if(empty($this->session->userdata['price_range']['price'])){
                           ?>
-                            <input type="range" name="budgetzz"  id="myRange" data-rangeslider  value="999999" min="0" max="999999" onchange="this.form.submit();">
+                            <input type="range" name="budgetzz"  id="myRange" data-rangeslider  value="<?php echo $max_price;?>" min="0" max="<?php echo $max_price;?>" onchange="this.form.submit();">
                           <?php
                             }else{
-                              $max_price = $this->session->userdata['price_range']['price'];
+                              $stored_price = $this->session->userdata['price_range']['price'];
                           ?> 
-                            <input type="range" name="budgetzz"  id="myRange" data-rangeslider  value="<?php echo $max_price;?>" min="0" max="999999" onchange="this.form.submit();">
+                            <input type="range" name="budgetzz"  id="myRange" data-rangeslider  value="<?php echo $stored_price;?>" min="0" max="<?php echo $max_price;?>" onchange="this.form.submit();">
                           <?php
                             }
                           ?>
-                          <!--<input type="range" id="min_price" data-rangeslider class="price-range-field" name="minimum_price" onchange="this.form.submit();"/>
-                          <input type="range" id="max_price" data-rangeslider class="price-range-field price-range-field2" name="maximum_price" onchange="this.form.submit();"/>-->
                         </div>
                       </form>
-                  	
                   </div>
                 </div>
               </div>

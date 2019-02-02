@@ -9,11 +9,7 @@ class Product_listing extends CI_Controller {
 		$data['fetch_all_categories'] = $this->product_listing_m->fetch_categories();
 		$cat_id = $this->uri->segment(2);
 		$data['fetch_cat_name'] = $this->product_listing_m->fetch_category($cat_id);
-		if(!empty($this->session->userdata['price_range']['price'])){
-			$under_price = intval($this->session->userdata['price_range']['price']);
-		}else{
-			$under_price = 999999;
-		}
+		
 		if($cat_id != ''){
 			$category_id = $cat_id;
 		}else{
@@ -25,6 +21,14 @@ class Product_listing extends CI_Controller {
 			$sorting_by = "";
 		}
 		$data['category_id'] = $category_id;
+		$data['max_price'] = $this->product_listing_m->fetch_max_price($category_id);
+		
+
+		if(!empty($this->session->userdata['price_range']['price'])){
+			$under_price = intval($this->session->userdata['price_range']['price']);
+		}else{
+			$under_price = $data['max_price'];
+		}
 		$data['fetch_all_products'] = $this->product_listing_m->fetch_products($category_id,$under_price,$sorting_by);
 		
 		$this->load->view('product_listing',$data);

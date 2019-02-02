@@ -18,6 +18,17 @@ class Product_listing_m extends CI_Model {
 		return $query->row();
 	}
 
+	public function fetch_max_price($category_id){
+		$this->db->select_max('product_price');
+		$this->db->from('product');
+		if($category_id != ""){
+			$this->db->where('cat_id',$category_id);
+		}
+		$query = $this->db->get();
+		return $query->row();
+		//return $this->db->last_query();
+	}
+
 	public function fetch_products($category_id,$price,$sorting_by){
 		$this->db->select('*');
 		$this->db->from('product');
