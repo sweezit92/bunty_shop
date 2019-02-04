@@ -7,7 +7,7 @@
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="<?php echo base_url('css');?>/bootstrap.min.css">
-<title>Explore+</title>
+<title>Vujubaba</title>
 <link rel="stylesheet" href="<?php echo base_url('css');?>/font-awesome.min.css" />
 <link href="<?php echo base_url('css');?>/style.css" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo base_url('css');?>/owlcarousel/owl.carousel.min.css" />
@@ -16,6 +16,7 @@
 <!--<link rel="stylesheet" href="<?php echo base_url('css');?>/price_range_style.css">-->
 <link rel="stylesheet" href="<?php echo base_url('css');?>/rangeslider.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url();?>images/logo.png">
 
 </head>
 <body class="iner_page listing_left_sidebar">

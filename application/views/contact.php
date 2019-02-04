@@ -7,12 +7,13 @@
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="<?php echo base_url('css');?>/bootstrap.min.css">
-<title>Explore+</title>
+<title>Vujubaba</title>
 <link rel="stylesheet" href="<?php echo base_url('css');?>/font-awesome.min.css" />
 <link href="<?php echo base_url('css');?>/style.css" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo base_url('css');?>/owl.carousel.min.css" />
 <link rel="stylesheet" href="<?php echo base_url('css');?>/owl.theme.default.min.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url();?>images/logo.png">
 </head>
 <body class="iner_page">
 <?php
@@ -37,7 +38,13 @@ $this->load->view("common/header");
 <section id="Contact_form">
   <div class="container">
     <div class="contacts_mape">
+	<?php
+	  if($this->session->flashdata('success')){
+	?>
 	<div class="alert alert-success" style="margin-top:30px;"> <strong><?php echo $this->session->flashdata('success');?>swds</strong> </div>
+	<?php
+	}
+	?>
       <div class="row">
         <div class="col-md-12">
           <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1229.5864897864183!2d75.76904979762698!3d26.886852269789564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1499667244188" allowfullscreen="" width="1170" height="512"></iframe>
