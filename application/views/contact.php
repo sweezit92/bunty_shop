@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -38,6 +37,7 @@ $this->load->view("common/header");
 <section id="Contact_form">
   <div class="container">
     <div class="contacts_mape">
+	<div class="alert alert-success" style="margin-top:30px;"> <strong><?php echo $this->session->flashdata('success');?>swds</strong> </div>
       <div class="row">
         <div class="col-md-12">
           <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1229.5864897864183!2d75.76904979762698!3d26.886852269789564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1499667244188" allowfullscreen="" width="1170" height="512"></iframe>
@@ -54,24 +54,32 @@ $this->load->view("common/header");
           </div>
           <div class="row">
             <div class="col-lg-12">
+			
              <div class="row">
               <div class="col-md-12">
-                <form method="post" class="m-t-40">
+                <form method="post" class="m-t-40" action="<?php echo base_url('contact/send_mail');?>">
                   <div class="row">
+				  <?php
+				  if(isset($this->session->userdata['logged_in']['user_id'])){
+					  $name = $get_details->first_name.' '.$get_details->last_name;
+				  }else{
+					  $name = '';
+				  }
+				  ?>
                     <div class="form-group col-md-4 col-sm-12 col-xs-12">
-                      <input class="form-control" id="name" name="name" placeholder="Full Name" type="text">
+                      <input class="form-control" id="name" name="name" value="<?php echo $name;?>" placeholder="Full Name" type="text">
                     </div>
                     <div class="form-group col-md-4 col-sm-12 col-xs-12">
-                      <input class="form-control" name="Email" placeholder="Email" type="text">
+                      <input class="form-control" name="email" placeholder="email" value="<?php echo ((isset($this->session->userdata['logged_in']['user_id']))?$get_details->email:'');?>" type="text">
                     </div>
                     <div class="form-group col-md-4 col-sm-12 col-xs-12">
-                      <input class="form-control" id="Subject" name="Subject" placeholder="Subject" type="text">
+                      <input class="form-control" id="Subject" name="subject" placeholder="Subject" type="text">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
                       <div class="input-group">
-                        <textarea class="form-control" rows="6" placeholder="Message"></textarea>
+                        <textarea class="form-control" rows="6" placeholder="message" name="message"></textarea>
                       </div>
                     </div>
                   </div>
@@ -115,7 +123,7 @@ $this->load->view("common/header");
                       <div class="icon-space align-self-top"> <i class="fa fa-envelope-o" aria-hidden="true"></i> </div>
                       <div class="align-self-center">
                         <h5>Have any questions? </h5>
-                        <p class="m-t-10">Support@themes.com</p>
+                        <p class="m-t-10">sales@vujubaba.com</p>
                       </div>
                     </div>
                   </div>
