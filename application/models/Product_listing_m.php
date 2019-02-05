@@ -48,7 +48,9 @@ class Product_listing_m extends CI_Model {
 				$this->db->order_by('product.product_date');
 			}
 		}
-		$this->db->where('product.product_price <',$price);
+		if($price != ''){
+			$this->db->where('product.product_price <',$price);
+		}
 		$this->db->group_by('product_image.product_id');
 		$query = $this->db->get();
 		return $query->result();

@@ -21,9 +21,9 @@ class Product_listing extends CI_Controller {
 			$sorting_by = "";
 		}
 		$data['category_id'] = $category_id;
-		$data['max_price'] = $this->product_listing_m->fetch_max_price($category_id);
+		$maximum_price = $this->product_listing_m->fetch_max_price($category_id);
+		$data['max_price'] = $maximum_price->product_price;
 		
-
 		if(!empty($this->session->userdata['price_range']['price'])){
 			$under_price = intval($this->session->userdata['price_range']['price']);
 		}else{
