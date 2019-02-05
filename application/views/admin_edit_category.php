@@ -7,11 +7,12 @@
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="<?php echo base_url('css');?>/bootstrap.min.css">
-<title>Explore+</title>
+<title>Vujubaba</title>
 <link rel="stylesheet" href="<?php echo base_url('css');?>/font-awesome.min.css" />
 <link href="<?php echo base_url('css');?>/style.css" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo base_url('css');?>/owl.carousel.min.css" />
 <link rel="stylesheet" href="<?php echo base_url('css');?>/owl.theme.default.min.css" />
+<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url();?>images/logo.png">
 </head>
 <body class="iner_page">
 <?php
