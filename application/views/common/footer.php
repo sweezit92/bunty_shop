@@ -4,15 +4,14 @@
     <div class="container spacer b-t">
       <div class="row">
         <div class="col-lg-4 col-md-4 m-b-30">
-          <h3 class="mb-3"> <!-- <img class="img-fluid" src="images/footer-logo.png" alt="footer-logo"> -->LOGO</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc est justo, aliquam nec tempor fermentum, commodo et libero. Quisque et rutrum arcu. Vivamus dictum tincidunt magna id euismod. Nam sollicitudin mi quis orci lobortis feugiat.</p>
-          <ul class="list-unstyled d-flex p-0 soical-icon m-t-20">
+          <h3 class="mb-3"> <img class="img-fluid" src="<?php echo base_url();?>images/logo.png" alt="footer-logo" style="height:80px;"></h3>
+          <!-- <ul class="list-unstyled d-flex p-0 soical-icon m-t-20">
             <li class="mr-2"><a href="#"><i class="fa fa-facebook-f"></i> </a></li>
             <li class="mr-2"><a href="#"><i class="fa fa-twitter"></i> </a></li>
             <li class="mr-2"><a href="#"><i class="fa fa-pinterest"></i> </a></li>
             <li class="mr-2"><a href="#"><i class="fa fa-google-plus"></i> </a></li>
             <li class="active"><a href="#"><i class="fa fa-linkedin"></i> </a></li>
-          </ul>
+          </ul> -->
         </div>
 		<div class="col-md-1"></div>
         <div class="col-lg-3 col-md-3 m-b-30">

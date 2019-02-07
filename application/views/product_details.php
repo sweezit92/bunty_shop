@@ -98,8 +98,9 @@ $this->load->view("common/header");
           </div>
           <div class="detail_btn d-flex m-t-20">
             <!-- <button class="btn_chat w-100 text-white mr-3 py-2 border-0" type="submit" value="button"><i class="fa fa-comment-o"></i> chat</button> -->
-            <button class="btn_chat w-100 text-white py-2 border-0" type="submit" value="button"> <i class="fa fa-phone"></i> 123 456 789</button>
+            <button class="btn_chat w-100 text-white py-2 border-0" type="submit" value="button"> <i class="fa fa-phone"></i> +91 9007672001 </button>
           </div>
+		  
         </div>
       </div>
     </div>

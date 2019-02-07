@@ -44,7 +44,7 @@ $this->load->view("common/header");
           <div class="container">
             <div class="row">
               <div class="col-md-12">
-                <h1>Kolkata's Largest E-commerce</h1>
+                <h1>India's Largest Market Place</h1>
                 <p>Search from over 15,000 classifieds & Popular products<br>
                     unlimited free!</p>
                 <div>
@@ -93,7 +93,7 @@ $this->load->view("common/header");
           <div class="container">
             <div class="row">
               <div class="col-md-12">
-                <h1>Kolkata's Largest E-commerce</h1>
+                <h1>India's Largest Market Place</h1>
                 <p>Search from over 15,000 classifieds & Popular products<br>
                     unlimited free!</p>
                 <div>
@@ -142,7 +142,7 @@ $this->load->view("common/header");
           <div class="container">
             <div class="row">
               <div class="col-md-12">
-                <h1>Kolkata's Largest E-commerce</h1>
+                <h1>India's Largest Market Place</h1>
                 <p>Search from over 15,000 classifieds & Popular products<br>
                     unlimited free!</p>
                 <div>
@@ -253,7 +253,7 @@ $this->load->view("common/header");
             </div>
             <div class="featured-bottum m-t-30">
               <ul class="d-flex justify-content-between list-unstyled m-b-20">
-                <li><a href="tel:123 456 789"><i class="fa fa-phone"></i> 123 456 789 </a></li>
+                <li><a href="tel:123 456 789"><i class="fa fa-phone"></i>  +91 9007672001 </a></li>
                 <li class="text-stars"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></li>
               </ul>
             </div>
@@ -269,20 +269,17 @@ $this->load->view("common/header");
 <!-- End Featured_ads --> 
 
 <!-- Trending_ads -->
-<section class="trending_ads">
+<!--<section class="trending_ads">
   <div class="container"> 
-    <!-- Row  -->
     <div class="row justify-content-center">
       <div class="col-md-7 text-center m-b-10">
         <h2 class="title">Trending Products</h2>
       </div>
     </div>
-    <!-- Row  -->
     <div class="row">
       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
         <div class="trending-parts bg-light rounded m-t-30">
           <div class="trending-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/0d25ad1a60da4303b4d9c71136abcba2.png" alt="Classified Plus"/>
-            <!-- <div class="featured-new"> <a href="#"> Open New </a> </div> -->
             <div class="trending_hed text-left">
               <h4> Traditional Jewellery </h4>
               <p> Barrackpore, Kolkata 122 </p>
@@ -321,7 +318,6 @@ $this->load->view("common/header");
       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
         <div class="trending-parts bg-light rounded m-t-30">
           <div class="trending-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Leafy-Vegetables-Copy.jpg" alt="Classified Plus"/>
-            <!-- <div class="featured-new"> <a href="#"> Open New </a> </div> -->
             <div class="trending_hed text-left">
               <h4> Foods & Vegetables </h4>
               <p> Barrackpore, Kolkata 122 </p>
@@ -360,7 +356,6 @@ $this->load->view("common/header");
       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
         <div class="trending-parts bg-light rounded m-t-30">
           <div class="trending-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/news_21711_n.jpg" alt="Classified Plus"/>
-            <!-- <div class="featured-new"> <a href="#"> Open New </a> </div> -->
             <div class="trending_hed text-left">
               <h4> Electronics </h4>
               <p> Barrackpore, Kolkata 122 </p>
@@ -380,7 +375,6 @@ $this->load->view("common/header");
       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
         <div class="trending-parts bg-light rounded m-t-30">
           <div class="trending-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Trending-img-6.png" alt="Classified Plus"/>
-            <!-- <div class="featured-new"> <a href="#"> Open New </a> </div> -->
             <div class="trending_hed text-left">
               <h4> Trending Fashion </h4>
               <p> Barrackpore, Kolkata 122 </p>
@@ -400,7 +394,7 @@ $this->load->view("common/header");
       <button class="view-btn hvr-pulse-grow" type="submit" value="button"><a href="<?php echo base_url("product_listing");?>" style="color:white;">View all</a></button>
     </div>
   </div>
-</section>
+</section>-->
 <!-- End Trending_ads --> 
 
 <!-- Trusted -->
@@ -430,8 +424,7 @@ $this->load->view("common/header");
 </section>
 <!-- End Trusted -->
 
-<!-- How it Work -->
-<section class="how_it_work p-b-50">
+<!--<section class="how_it_work p-b-50">
 <div class="container">
 <div class="row justify-content-center">
       <div class="col-md-9 text-center">
@@ -496,18 +489,14 @@ $this->load->view("common/header");
 </div>
 </div>
 </section>
-<!-- End How it Work --> 
 
-<!-- We_Bes -->
 <section class="we_bes p-b-45">
   <div class="container"> 
-    <!-- Row  -->
     <div class="row justify-content-center">
       <div class="col-md-7 text-center">
         <h2 class="title">Why We Are Best</h2>
       </div>
     </div>
-    <!-- Row  -->
     <div class="row">
       <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
         <div class="d-flex m-t-40">
