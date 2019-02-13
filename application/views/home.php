@@ -243,10 +243,10 @@ $this->load->view("common/header");
             <div class="text-top">
               <div class="heading p-b-5"> <a href="<?php echo base_url("product_details");?>/<?php echo $each_popular_product->product_id;?>"><?php echo $each_popular_product->category_name;?></a> </div>
             </div>
-            <div class="text-stars m-t-5">
+            <div class="text-stars m-t-5" style="height:55px;">
               <ul class="d-flex justify-content-between list-unstyled m-b-20">
                 <li><h3><?php echo $each_popular_product->product_name;?></h3></li>
-                <li class="text-stars"><?php echo date('d/m/Y',$each_popular_product->product_date);?></li>
+                <li class="text-stars" style="font-size:12px;"><?php echo date('d/m/Y',$each_popular_product->product_date);?></li>
               </ul>
 
               <div class="price m-t-5">INR <?php echo $each_popular_product->product_price;?></div>

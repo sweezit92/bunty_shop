@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="<?php echo base_url('css');?>/owl.carousel.min.css" />
 <link rel="stylesheet" href="<?php echo base_url('css');?>/owl.theme.default.min.css" />
 <link rel="stylesheet" href="<?php echo base_url('css');?>/bootstrap-fileupload.min.css" />
+<link rel="stylesheet" href="<?php echo base_url('css');?>/tags-input.css" />
+
 <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url();?>images/logo.png">
@@ -117,7 +119,7 @@ $this->load->view("common/header");
 				<a class="add_more" href="javascript:void(0);" onclick="add_more_image();">Add More</a> 
 				<p>&nbsp;</p>
 				<div class="form-group">
-                  <label>price</label>
+                  <label>Price</label>
                   <input type="number" name="product_price" class="form-control" placeholder="Add your price">
                 </div>
                 
@@ -127,6 +129,12 @@ $this->load->view("common/header");
                     <textarea class="form-control" name="desc"></textarea>
                   </div>
                 </div>
+
+				<div class="form-group">
+                  <label>Pincodes</label>
+                  <input type="text" value="" class="form-control" name="pincodes[]" data-role="tagsinput" placeholder="Add pincodes" />
+                </div>
+
 				<button class="change_btn mt-2 text-capitalize" type="submit" value="button">add product</button>
               </form>
             </div>
@@ -143,10 +151,6 @@ $this->load->view("common/footer");
 ?>
 <script>
 	CKEDITOR.replace( 'desc' );
-	
-	
-
-		
 </script>
 
 <!-- Optional JavaScript --> 
@@ -157,6 +161,8 @@ $this->load->view("common/footer");
 <script src="<?php echo base_url('js');?>/owl.carousel.min.js"></script> 
 <script src="<?php echo base_url('js');?>/custom.js"></script>
 <script src="<?php echo base_url('js');?>/bootstrap-fileupload.min.js"></script>
+<script src="<?php echo base_url('js');?>/tags-input.js"></script> 
+
 
 <script>
 function add_more_image()

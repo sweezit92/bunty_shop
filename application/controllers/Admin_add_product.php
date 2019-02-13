@@ -24,13 +24,14 @@ class Admin_add_product extends CI_Controller {
 		$product_name = $this->input->post('product_name');
 		$product_price = $this->input->post('product_price');
 		$product_desc = $this->input->post('desc');
-		
+		$pincodes = $this->input->post('pincodes');
+		$implode_pin = implode(",",$pincodes);
 		$date = time();
 		
 		$check_duplicate = $this->admin_add_product_m->check_duplicate($cat_id,$product_name);
 		if($check_duplicate < 1)
 		{
-			$insert_array = array('cat_id' => $cat_id,'product_name' => $product_name,'product_price' => $product_price,'product_desc' => $product_desc,'product_date' => $date);
+			$insert_array = array('cat_id' => $cat_id,'product_name' => $product_name,'product_price' => $product_price,'product_desc' => $product_desc,'pincodes' => $implode_pin,'product_date' => $date);
 			$insert_id = $this->admin_add_product_m->insert_query($insert_array);
 			if($insert_id != '')
 			{

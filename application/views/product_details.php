@@ -27,15 +27,15 @@ $this->load->view("common/header");
   <div class="container">
     <nav aria-label="breadcrumb">
       <ul class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Detail</a></li>
+        <li class="breadcrumb-item"><a href="<?php echo base_url('home');?>">Home</a></li>
+        <li class="breadcrumb-item"><a href="<?php echo base_url('product_listing');?>">Detail</a></li>
         <li class="breadcrumb-item active" aria-current="page"><?php echo $fetch_pro_one_image->category_name;?></li>
       </ul>
     </nav>
   </div>
 </div>
 <!-- End breadcrumb -->
-
+			
 <!-- Detail_part -->
 <section class="detail_part m-t-50">
   <div class="container">
@@ -73,16 +73,14 @@ $this->load->view("common/header");
                 <div class="form-check">
                   <label class="form-check-label"> </label>
                   <img src="<?php echo base_url('images');?>/warrenty.png" alt="Classified Plus">
-                  <div class="warranty d-inline-block">Onsite Assure Warranty*<br>
-                    $15 (6 months)</div>
+                  <div class="warranty d-inline-block">Onsite Assure Warranty</div>
                 </div>
               </div>
               <div class="col-lg-12 col-xl-6 col-md-12 col-sm-12 col-12">
                 <div class="form-check">
                   <label class="form-check-label"> </label>
                   <img src="<?php echo base_url('images');?>/insurance.png" alt="Classified Plus">
-                  <div class="warranty d-inline-block">SyncNscan Insurance (12 mon.)<br>
-                    For just $50</div>
+                  <div class="warranty d-inline-block">SyncNscan Insurance (12 mon.)</div>
                 </div>
               </div>
             </div>
@@ -90,15 +88,38 @@ $this->load->view("common/header");
           <?php
             }
           ?>
-          <div class="detail_prize p-t-10">
+		   <div class="detail_prize p-t-10">
+		   <?php
+				if($this->session->flashdata('failed')){
+			?>
+				<div class="alert alert-danger"> <strong><?php echo $this->session->flashdata('failed');?></strong> </div>
+			<?php
+				}
+				else if($this->session->flashdata('success')){
+			?>
+				<div class="alert alert-success"> <strong><?php echo $this->session->flashdata('success');?></strong> </div>
+			<?php
+				}
+			?>
+			<form method="POST" action="<?php echo base_url('product_details/check_availability');?>/<?php echo $this->uri->segment(2);?>">
+				<ul class="list-unstyled">
+				  <li class="d-inline-block pr-3"> Check Availability : </li>
+				  <li class="d-inline-block Price_m"><input type="text" class="form-control" placeholder="Enter Pincode" name="pincode"></li>
+				  <li class="d-inline-block Price_m"><button type="submit" class="btn btn-info">Check Pincode</button></li>
+				</ul>
+			</form>
+          </div>
+		  <div class="detail_prize p-t-10">
             <ul class="list-unstyled">
               <li class="d-inline-block pr-3"> Deal Price : </li>
               <li class="d-inline-block Price_m"> INR <?php echo $fetch_pro_one_image->product_price;?> </li>
             </ul>
           </div>
+          
           <div class="detail_btn d-flex m-t-20">
-            <!-- <button class="btn_chat w-100 text-white mr-3 py-2 border-0" type="submit" value="button"><i class="fa fa-comment-o"></i> chat</button> -->
-            <button class="btn_chat w-100 text-white py-2 border-0" type="submit" value="button"> <i class="fa fa-phone"></i> +91 9007672001 </button>
+            <button class="btn_chat w-100 text-white mr-3 py-2 border-0"  data-toggle="modal" data-target="#modalForm"><i class="fa fa-comment-o"></i> Call Me back</button>
+            <a href="tel:+919007672001" class="btn_chat w-100 text-white py-2 border-0"> <i class="fa fa-phone" style="margin-left:17px;"> +91 9007672001 </i> </a>
+
           </div>
 		  
         </div>
@@ -185,67 +206,49 @@ $this->load->view("common/header");
       <?php
         }
       ?>
-     <!------------
-      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-        <div class="featured-parts rounded m-t-30">
-          <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Featured-img-2.png" alt="Classified Plus"> </div>
-          <div class="featured-text">
-            <div class="text-top d-flex justify-content-between ">
-              <div class="heading"> <a href="#">Fashion</a> </div>
-              <div class="book-mark"><a href="#"><i class="fa fa-bookmark-o"></i></a></div>
-            </div>
-            <div class="text-stars m-t-5">
-              <p>Cloth for sele</p>
-              <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-            <div class="featured-bottum m-t-30">
-              <ul class="d-flex justify-content-between list-unstyled m-b-20">
-                <li><a href="#"><i class="fa fa-map-marker"></i> East 7th street 98 </a></li>
-                <li><a href="#"><i class="fa fa-heart-o"></i> Save</a> </li>
-              </ul>
-            </div>
+     <!-- Modal -->
+      <div class="modal fade" id="modalForm" role="dialog">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">
+                          <span aria-hidden="true">&times;</span>
+                          <span class="sr-only">Close</span>
+                      </button>
+                      <h4 class="modal-title" id="myModalLabel">Contact Form</h4>
+                  </div>
+                  <form action="<?php echo base_url('product_details/send_email');?>/<?php echo $this->uri->segment(2);?>" method="POST">
+                  <!-- Modal Body -->
+                  <div class="modal-body">
+                      <p class="statusMsg"></p>
+                        <div class="form-group">
+                            <label for="inputName">Name</label>
+                            <input type="text" class="form-control" id="inputName" placeholder="Enter your name"/ name="full_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputMobile">Mobile</label>
+                            <input type="number" class="form-control" id="inputMobile" placeholder="Enter your mobile number" name="mobile"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail">Email</label>
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Enter your email"  name="email"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputMessage">Message</label>
+                            <textarea class="form-control" id="inputMessage" placeholder="Enter your message"  name="message"></textarea>
+                        </div>
+                  </div>
+                  <!-- Modal Footer -->
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary submitBtn">SUBMIT</button>
+                  </div>
+                  </form>
+              </div>
           </div>
-        </div>
       </div>
-      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-        <div class="featured-parts rounded m-t-30">
-          <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Featured-img-18.png" alt="Classified Plus"> </div>
-          <div class="featured-text">
-            <div class="text-top d-flex justify-content-between ">
-              <div class="heading"> <a href="#">Furniture</a> </div>
-              <div class="book-mark"><a href="#"><i class="fa fa-bookmark-o"></i></a></div>
-            </div>
-            <div class="text-stars m-t-5">
-              <p>Bed sheet for sele</p>
-              <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-            <div class="featured-bottum m-t-30">
-              <ul class="d-flex justify-content-between list-unstyled m-b-20">
-                <li><a href="#"><i class="fa fa-map-marker"></i> East 7th street 98 </a></li>
-                <li><a href="#"><i class="fa fa-heart-o"></i> Save</a> </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-        <div class="featured-parts rounded m-t-30">
-          <div class="featured-img"> <img class="img-fluid rounded-top" src="<?php echo base_url('images');?>/Featured-img-19.png" alt="Classified Plus"> </div>
-          <div class="featured-text">
-            <div class="text-top d-flex justify-content-between ">
-              <div class="heading"> <a href="#">Baby products</a> </div>
-              <div class="book-mark"><a href="#"><i class="fa fa-bookmark"></i></a></div>
-            </div>
-            <div class="text-stars m-t-5">
-              <p>Bed sheet for sele</p>
-              <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-            <div class="featured-bottum m-t-30">
-              <ul class="d-flex justify-content-between list-unstyled m-b-20">
-                <li><a href="#"><i class="fa fa-map-marker"></i> East 7th street 98 </a></li>
-                <li><a href="#"><i class="fa fa-heart-o"></i> Save</a> </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>-->
+      <!-- MODAL ENDS -->
   </div>
 </section>
 <!-- End top_listings --> 
@@ -269,6 +272,9 @@ function show_image(e){
 	jQuery("#imageID").attr('src', url );    
 }
 
+$("#check_avail").mouseleave(function(){
+  alert("You entered p1!");
+});
 </script>
 
 </body>

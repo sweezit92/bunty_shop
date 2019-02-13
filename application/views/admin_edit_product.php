@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="<?php echo base_url('css');?>/owl.carousel.min.css" />
 <link rel="stylesheet" href="<?php echo base_url('css');?>/owl.theme.default.min.css" />
 <link rel="stylesheet" href="<?php echo base_url('css');?>/bootstrap-fileupload.min.css" />
+<link rel="stylesheet" href="<?php echo base_url('css');?>/tags-input.css" />
+
 <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url();?>images/logo.png">
@@ -148,6 +150,11 @@ $this->load->view("common/header");
                     <textarea class="form-control" name="desc"><?php echo $fetch_product->product_desc;?></textarea>
                   </div>
                 </div>
+				<div class="form-group">
+                  <label>Pincodes</label>
+                  <input type="text" value="<?php echo $fetch_product->pincodes;?>" class="form-control" name="pincodes[]" data-role="tagsinput" placeholder="Add pincodes" />
+                </div>
+
 				<button class="change_btn mt-2 text-capitalize" type="submit" value="button">Update product</button>
               </form>
             </div>
@@ -174,6 +181,7 @@ $this->load->view("common/footer");
 <script src="<?php echo base_url('js');?>/owl.carousel.min.js"></script> 
 <script src="<?php echo base_url('js');?>/custom.js"></script>
 <script src="<?php echo base_url('js');?>/bootstrap-fileupload.min.js"></script>
+<script src="<?php echo base_url('js');?>/tags-input.js"></script> 
 
 <script>
 function add_more_image()

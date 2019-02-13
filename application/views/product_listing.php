@@ -180,7 +180,7 @@ $this->load->view("common/header");
             <div class="text-stars featured-bottum m-t-30">
               <ul class="d-flex justify-content-between list-unstyled m-b-20">
                 <li><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></li>
-                <li><a href="<?php echo base_url("product_details");?>/<?php echo $each_productzz->product_id;?>"><i class="fa fa-heart-o"></i> Save</a> </li>
+                <li><a href="tel:+919007672001"> <i class="fa fa-phone"> +91 9007672001 </i> </a></li>
               </ul>
             </div>
           </div>

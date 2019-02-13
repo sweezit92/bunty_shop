@@ -43,6 +43,14 @@ class Product_details_m extends CI_Model {
 		return $query->row();
 	}
 
+	public function fetch_pincodes($product_id){
+		$this->db->select('*');
+		$this->db->from('product');
+		$this->db->where('product_id',$product_id);
+		$query = $this->db->get();
+		return $query->row();
+	}
+
 }
 
 /* End of file Product_details_m.php */

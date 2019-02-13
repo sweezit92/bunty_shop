@@ -49,7 +49,7 @@ class Product_listing_m extends CI_Model {
 			}
 		}
 		if($price != ''){
-			$this->db->where('product.product_price <',$price);
+			$this->db->where('product.product_price <=',$price);
 		}
 		$this->db->group_by('product_image.product_id');
 		$query = $this->db->get();
